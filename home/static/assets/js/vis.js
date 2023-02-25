@@ -1,3 +1,11 @@
+// TODO : add responsive design to graph
+// TODO : Add dropdown logic for graph type (https://d3-graph-gallery.com/graph/connectedscatter_select.html)
+// TODO : Add line chart with zoom (https://d3-graph-gallery.com/graph/line_brushZoom.html)
+// TODO : Line Plot with annotations (https://d3-graph-gallery.com/graph/connectedscatter_tooltip.html)
+// TODO : add labels to y axis
+// TODO : show base term
+// TODO : make table formt to input fields
+
 function visualize(context){
     // set the dimensions and margins of the graph
     var margin = {top: 10, right: 150, bottom: 20, left: 30},
@@ -14,7 +22,7 @@ function visualize(context){
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-    var x = context;
+    // <!-- var x = context; -->
     console.log(x)
     const graph = JSON.parse(x.replace(/'/g, '"'))
     console.log(graph);
@@ -62,8 +70,8 @@ function visualize(context){
     .attr("class", function(d){ return d.name })
     .attr("d", function(d){ return line(d.values) } )
     .attr("stroke", function(d){ return myColor(d.name) })
-    .style("stroke-width", 4)
-    .style("fill", "none")
+    .style("stroke-width", 80)
+    .style("fill", "red")
 
     // Add the points
     svg
@@ -122,6 +130,7 @@ function visualize(context){
             return dist;
         }	
     })
+    .style("stroke-width", 4)
     .attr('y', 30)
     .text(function(d) { return d.name; })
     .style("fill", function(d){ return myColor(d.name) })
@@ -133,4 +142,4 @@ function visualize(context){
         // Change the opacity: from 0 to 1 or from 1 to 0
         d3.selectAll("." + d.name).transition().style("opacity", currentOpacity == 1 ? 0:1)
         })		
-}	
+}

@@ -1,11 +1,11 @@
 import re, os, json
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from . import models, forms
 
-from .helper.process import convert
-from .helper.trends import nyt_trends
+from home.helper.trends.nyt.generate import gen_nyt_trends
+# from home.helper.trends.nyt import words
 
 # TODO : Add urls for generic and elements.html and resolve their assets into static as well
 
@@ -30,15 +30,15 @@ def index(req):
             base_term = form.cleaned_data["base_term"]
             rel_terms = terms
 
-            labels, dataready = nyt_trends(base_term, rel_terms)
+            labels, dataready = gen_nyt_trends(base_term, rel_terms)
     else:
         name = "nyt"
         base_term = "race"
         rel_terms = ["state", "government", "new", "sports"]
 
-        labels, dataready = nyt_trends(base_term, rel_terms)
+        labels, dataready = gen_nyt_trends(base_term, rel_terms)
     
-
+    # TODO : generate ranges (X & Y)
     context = {
         "context": {
             "graph": {
@@ -57,3 +57,21 @@ def index(req):
     
 
     return render(req, 'index.html', context)
+
+def term_autocomplete(request):
+    if request.GET.get('q'):
+        # TODO : get common words on the basis of model name
+        f = open("./home/helper/trends/nyt/words.json")
+        data = json.load(f)["common"]
+
+        letter = str(request.GET['q']).lower()
+        sub = [i for i in data if i.lower().startswith(letter)]
+
+        return JsonResponse(sub, safe=False)
+
+    #     q = 
+    #     data = model.objects.using('legacy').filter(email__startswith=q).values_list('email',flat=True)
+    #     json = list(data)
+    #     return JsonResponse(json, safe=False)
+    # else:
+    #     HttpResponse("No cookies")

@@ -58,20 +58,17 @@ def index(req):
 
     return render(req, 'index.html', context)
 
-def term_autocomplete(request):
+def term_autocomplete(request, model_type):
     if request.GET.get('q'):
-        # TODO : get common words on the basis of model name
-        f = open("./home/helper/trends/nyt/words.json")
+        if model_type == 'nyt':
+            BASE_DIR = "./home/helper/trends/nyt/"
+        else:
+            return JsonResponse([], safe=False)
+            
+        f = open(BASE_DIR + "words.json")
         data = json.load(f)["common"]
 
         letter = str(request.GET['q']).lower()
         sub = [i for i in data if i.lower().startswith(letter)]
 
         return JsonResponse(sub, safe=False)
-
-    #     q = 
-    #     data = model.objects.using('legacy').filter(email__startswith=q).values_list('email',flat=True)
-    #     json = list(data)
-    #     return JsonResponse(json, safe=False)
-    # else:
-    #     HttpResponse("No cookies")

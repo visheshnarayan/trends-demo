@@ -3782,46 +3782,76 @@ input, select, textarea {
 			padding: 8rem 8rem 6rem 8rem ;
 		}
 
-			#main > .post header.major > .date {
-				margin-top: -2rem;
+		#main > .post header.major > .date {
+			margin-top: -2rem;
+		}
+
+		#main > .post header.major > h1, #main > .post header.major h2 {
+			font-size: 4rem;
+			line-height: 1.1;
+			margin: 0 0 2rem 0;
+		}
+
+		#main > .post.featured {
+			text-align: center;
+		}
+
+		/* TODO : put these at correct place */
+
+		#main > form {
+			text-align: center;
+		}
+
+		.column {
+			display:flex;
+			justify-content:space-between;
+			flex-direction:row;
+			flex-wrap:wrap;
+		}
+
+		.column div {
+			width:48%;
+		}
+
+		.item {
+			position: relative;
+			margin: 10px 0;
+		}
+
+		.item span {
+			color: red;
+		}
+
+		.form input {
+			color: red;
+		}
+
+		@media screen and (max-width: 1280px) {
+
+			#main > .post {
+				padding: 6rem 4rem 4rem 4rem ;
 			}
 
-			#main > .post header.major > h1, #main > .post header.major h2 {
-				font-size: 4rem;
-				line-height: 1.1;
-				margin: 0 0 2rem 0;
+		}
+
+		@media screen and (max-width: 736px) {
+
+			#main > .post {
+				padding: 4rem 2rem 2rem 2rem ;
 			}
 
-			#main > .post.featured {
-				text-align: center;
-			}
-
-			@media screen and (max-width: 1280px) {
-
-				#main > .post {
-					padding: 6rem 4rem 4rem 4rem ;
+				#main > .post header.major > .date {
+					margin-top: -1rem;
+					margin-bottom: 2rem;
 				}
 
-			}
-
-			@media screen and (max-width: 736px) {
-
-				#main > .post {
-					padding: 4rem 2rem 2rem 2rem ;
+				#main > .post header.major > h1, #main > .post header.major h2 {
+					font-size: 2.5rem;
+					line-height: 1.2;
+					margin: 0 0 1.5rem 0;
 				}
 
-					#main > .post header.major > .date {
-						margin-top: -1rem;
-						margin-bottom: 2rem;
-					}
-
-					#main > .post header.major > h1, #main > .post header.major h2 {
-						font-size: 2.5rem;
-						line-height: 1.2;
-						margin: 0 0 1.5rem 0;
-					}
-
-			}
+		}
 
 		#main > .posts {
 			display: -moz-flex;
@@ -4620,7 +4650,7 @@ input, select, textarea {
 			right: 0;
 			text-align: right;
 			top: 0;
-			vertical-align: middle;
+			/* vertical-align: middle; */
 			width: 7rem;
 		}
 

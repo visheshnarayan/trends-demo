@@ -7,7 +7,9 @@
 // TODO : make table formt to input fields
 // TODO : correct graph margins
 
-function visualize(context){
+// TODO : create updation function
+
+function visualize(){
     // set the dimensions and margins of the graph
     var margin = {top: 10, right: 100, bottom: 30, left: 30},
     divW = d3.select('#my_dataviz').node().getBoundingClientRect().width,
@@ -15,8 +17,16 @@ function visualize(context){
     width = divW - margin.left - margin.right,
     height = divW/2 - margin.top - margin.bottom;
 
+    // clearing data and redrawing
+    d3.select("#my_dataviz").selectAll('*').remove();
+    // svg.remove();
+
+
+
     // append the svg object to the body of the page
+    // svg.remove();
     var svg = d3.select("#my_dataviz")
+    // .remove()
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -24,32 +34,34 @@ function visualize(context){
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-    // TODO : write logic to crete graph-data.csv dynamically in views.py and replace below link 
-    d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_connectedscatter.csv", function(data) {
+    d3.csv(graph_src, function(data) {
+
+        console.log("graph csv data : ", data);
 
         // List of groups 
-        const graph = JSON.parse(context.replace(/'/g, '"'))
-        console.log(graph);
-        var allGroup = graph.rel_terms
+        // const graph = JSON.parse(graph_context.replace(/'/g, '"'));
+        // console.log("graph data : ", graph);
+        var allGroup = graph_context.rel_terms
 
         // Reformat the data: we need an array of arrays of {x, y} tuples
         var dataReady = allGroup.map( function(grpName) { // .map allows to do something for each element of the list
             return {
-            name: grpName,
-            values: data.map(function(d) {
-                return {time: d.time, value: +d[grpName]};
-            })
+                name: grpName,
+                values: data.map(function(d) {
+                    return {time: d.time, value: +d[grpName]};
+                })
             };
         });
 
         // I strongly advise to have a look to dataReady with
-        console.log(dataReady)
+        console.log("dataReady : ", dataReady);
 
         // A color scale: one color for each group
         var myColor = d3.scaleOrdinal()
             .domain(allGroup)
             .range(d3.schemeSet2);
 
+        console.warn("..1");
         // Add X axis --> it is a date format
         var x = d3.scaleLinear()
             .domain([0,7])
@@ -59,6 +71,7 @@ function visualize(context){
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
 
+        console.warn("..2");
         // Add Y axis
         var y = d3.scaleLinear()
         .domain( [0,1.2])
@@ -67,11 +80,13 @@ function visualize(context){
         svg.append("g")
         .call(d3.axisLeft(y));
 
+        console.warn("..3");
         // Add the lines
         var line = d3.line()
         .x(function(d) { return x(+d.time) })
         .y(function(d) { return y(+d.value) })
 
+        console.warn("..4");
         svg.selectAll("myLines")
             .data(dataReady)
             .enter()
@@ -82,6 +97,7 @@ function visualize(context){
                 .style("stroke-width", 4)
                 .style("fill", "none")
 
+        console.warn("..5");
         // Add the points
         svg
             // First we need to enter in a group
@@ -101,6 +117,7 @@ function visualize(context){
                 .attr("r", 5)
                 .attr("stroke", "white")
 
+        console.warn("..6");
         // Add a label at the end of each line
         svg
             .selectAll("myLabels")

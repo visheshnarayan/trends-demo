@@ -26,6 +26,8 @@
 	<!-- TODO: Background = #181a1b -->
 	<!-- TODO: Text = #cecac3 -->
 	<!-- TODO : Add another trend -->
+	<!-- TODO : put all JS tags at one place -->
+	<!-- CSS style all * border  be red to see spacing -->
 
 	<!-- graph scripts -->
 	<script src="https://d3js.org/d3.v4.js"></script>
@@ -84,11 +86,6 @@
 					<!-- <svg id="myPlot" style="width:500px;height:500px"></svg> -->
 
 					<!-- Create a div where the graph will take place -->
-					<div id="my_dataviz" style="border: 5px solid #eeeeee; padding: 10px; border-radius: 25px;"></div>
-
-					<script type="text/javascript" src="{% static 'assets/js/vis.js' %}"></script>
-					<script> visualize( "{{ context.graph | safe }}" ) </script> 
-
 					<header class="major">
 						<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
 						facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
@@ -98,10 +95,33 @@
 					<ul class="actions special">
 						<li><a href="#" class="button large">Full Story</a></li>
 					</ul>
+					
+					<!-- TODO : add div here (reverse margin)  -->
+					<!-- <header class="major">
+						<span class="date" id="date">February 15, 2023</span>
+					</header> -->
 				</article>
 
 
-				<form action="" method="post" autocomplete="off">
+				<div id="my_dataviz" style="border: 5px solid #eeeeee; padding: 10px; margin-left: 4%; margin-right: 4%; border-radius: 25px;"></div>
+
+				<script>
+					var graph_src = "{%  static 'csv/graph-data.csv' %}";
+				</script>
+				<!-- <script type="text/javascript" src="{% static 'assets/js/vis.js' %}"></script> -->
+				<script type="text/javascript" src="{% static 'assets/js/vis-csv.js' %}">
+					var graph_src = "{%  static 'csv/graph-data.csv' %}";
+				</script>
+
+				<script>
+					// var graph_context = ;
+					const graph_context = JSON.parse("{{ context.graph | safe }}".replace(/'/g, '"'));
+					// visualize("{{ context.graph | safe }}");
+					visualize();
+				</script>
+
+				<!-- <form id="graph-form" action="/graph_update/" method="post" autocomplete="off"> -->
+				<form id="graph-form" method="post" autocomplete="off">
 					{% csrf_token %}
 					<div class="column">
 						<div class="item">
@@ -137,6 +157,7 @@
 					<input id="formSubmit" type="submit" value=Submit>
 				</form>
 
+				<script type="text/javascript" src="{% static 'assets/js/update-graph.js' %}"></script>
 				<script type="text/javascript" src="{% static 'assets/js/bs-autocomplete.js' %}"></script>
 
 				<!-- Posts -->

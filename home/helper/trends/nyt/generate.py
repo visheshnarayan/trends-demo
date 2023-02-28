@@ -47,7 +47,7 @@ def gen_nyt_trends(base_term, rel_terms):
     dataready = convert(rel_terms, values)
 
     # returning values
-    return labels, dataready
+    return labels, dataready, values
 
 
     

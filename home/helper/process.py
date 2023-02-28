@@ -79,24 +79,6 @@ def tokenize_and_stem(text):
     stems = [stemmer.stem(t) for t in filtered_tokens]
     stems = [e for e in stems if e not in rem_words ]
 
-# output schema
-
-# dataready = [ ...number of terms
-#     {
-#         "name": "fauci",
-#         "values": [ ...number of periods
-#             {
-#                 "time": "1",
-#                 "value": 0.2,
-#             },
-#             {},
-#             ...
-#         ]
-#     },
-#     {},
-#     ...
-# ]
-
 def convert(terms, values):
     context = []
     

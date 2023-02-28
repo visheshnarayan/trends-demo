@@ -2,8 +2,6 @@
 from gensim.models import Word2Vec
 from scipy.spatial import distance
 
-from home.helper.process import convert
-
 BASE_DIR = "./home/helper/trends/nyt/"
 
 # labels
@@ -13,13 +11,8 @@ def gen_nyt_trends(base_term, rel_terms):
     # load W2V models
     models = []
 
-    models.append(Word2Vec.load(BASE_DIR + "models/jan20.model"))
-    models.append(Word2Vec.load(BASE_DIR + "models/aug20.model"))
-    models.append(Word2Vec.load(BASE_DIR + "models/dec20.model"))
-
-    models.append(Word2Vec.load(BASE_DIR + "models/jan21.model"))
-    models.append(Word2Vec.load(BASE_DIR + "models/aug21.model"))
-    models.append(Word2Vec.load(BASE_DIR + "models/dec21.model"))
+    for label in labels:
+        models.append(Word2Vec.load(f"{BASE_DIR}models/{label}.model"))
 
     # get similarity scores
     values = []
@@ -35,19 +28,14 @@ def gen_nyt_trends(base_term, rel_terms):
             try:
                 vals.append(distance.cosine(model.wv[base_term], model.wv[rel]))
             except Exception as e:
-                if not vals:
-                    vals.append(1.0)
-                else:
-                    vals.append(vals[-1])
+                if not vals: vals.append(1.0)
+                else: vals.append(vals[-1])
 
                 print(f"Exception occured in model: {model}, number: {i}\nbase term: {base_term}, relative term: {rel}")
         values.append(vals)
 
-    # creating dataready
-    dataready = convert(rel_terms, values)
-
     # returning values
-    return labels, dataready, values
+    return labels, values
 
 
     

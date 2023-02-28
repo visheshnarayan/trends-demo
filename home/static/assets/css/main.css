@@ -3796,9 +3796,9 @@ input, select, textarea {
 			text-align: center;
 		}
 
-		/* TODO : put these at correct place */
+		/* Form css */
 
-		#main > form {
+		#main > .form, #main > form, #graph-form {
 			text-align: center;
 		}
 
@@ -3816,14 +3816,6 @@ input, select, textarea {
 		.item {
 			position: relative;
 			margin: 10px 0;
-		}
-
-		.item span {
-			color: red;
-		}
-
-		.form input {
-			color: red;
 		}
 
 		@media screen and (max-width: 1280px) {

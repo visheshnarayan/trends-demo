@@ -8,6 +8,7 @@ from nltk.stem.snowball import SnowballStemmer
 
 stemmer = SnowballStemmer("english")
 
+# VARS
 num_alphas  = "one,two,three,four,five,six,seven,eight,nine,ten,"
 rem_words = num_alphas
 rem_words = rem_words.split(',')
@@ -79,18 +80,3 @@ def tokenize_and_stem(text):
     stems = [stemmer.stem(t) for t in filtered_tokens]
     stems = [e for e in stems if e not in rem_words ]
 
-def convert(terms, values):
-    context = []
-    
-    for idx, val in enumerate(terms):
-        temp = {
-            "name": val,
-            "values": []
-        }
-        
-        for i, value in enumerate(values[idx]):
-            temp["values"].append({"time": i+1, "value": value})    
-            
-        context.append(temp)
-        
-    return context

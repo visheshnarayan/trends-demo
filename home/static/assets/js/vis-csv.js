@@ -7,9 +7,9 @@
 // TODO : make table formt to input fields
 // TODO : correct graph margins
 
-// TODO : create updation function
-
 function visualize(){
+    console.log("graph visualize!!!");
+
     // set the dimensions and margins of the graph
     var margin = {top: 10, right: 100, bottom: 30, left: 30},
     divW = d3.select('#my_dataviz').node().getBoundingClientRect().width,
@@ -36,11 +36,9 @@ function visualize(){
 
     d3.csv(graph_src, function(data) {
 
-        console.log("graph csv data : ", data);
+        // console.log("graph csv data : ", data);
 
         // List of groups 
-        // const graph = JSON.parse(graph_context.replace(/'/g, '"'));
-        // console.log("graph data : ", graph);
         var allGroup = graph_context.rel_terms
 
         // Reformat the data: we need an array of arrays of {x, y} tuples
@@ -54,39 +52,39 @@ function visualize(){
         });
 
         // I strongly advise to have a look to dataReady with
-        console.log("dataReady : ", dataReady);
+        // console.log("dataReady : ", dataReady);
 
         // A color scale: one color for each group
         var myColor = d3.scaleOrdinal()
             .domain(allGroup)
             .range(d3.schemeSet2);
 
-        console.warn("..1");
+        // console.warn("..1");
         // Add X axis --> it is a date format
         var x = d3.scaleLinear()
-            .domain([0,7])
+            .domain([0,graph_context.rangeX])
             .range([ 0, width ]);
 
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x));
 
-        console.warn("..2");
+        // console.warn("..2");
         // Add Y axis
         var y = d3.scaleLinear()
-        .domain( [0,1.2])
+        .domain( [0,graph_context.rangeY])
         .range([ height, 0 ]);
 
         svg.append("g")
         .call(d3.axisLeft(y));
 
-        console.warn("..3");
+        // console.warn("..3");
         // Add the lines
         var line = d3.line()
         .x(function(d) { return x(+d.time) })
         .y(function(d) { return y(+d.value) })
 
-        console.warn("..4");
+        // console.warn("..4");
         svg.selectAll("myLines")
             .data(dataReady)
             .enter()
@@ -97,7 +95,7 @@ function visualize(){
                 .style("stroke-width", 4)
                 .style("fill", "none")
 
-        console.warn("..5");
+        // console.warn("..5");
         // Add the points
         svg
             // First we need to enter in a group
@@ -117,7 +115,7 @@ function visualize(){
                 .attr("r", 5)
                 .attr("stroke", "white")
 
-        console.warn("..6");
+        // console.warn("..6");
         // Add a label at the end of each line
         svg
             .selectAll("myLabels")

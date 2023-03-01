@@ -9,11 +9,8 @@ $(document).ready(
         url: "/graph_update/",
         data:  serializedData,
 
-        // TODO : Add error hanling
         success: function(data){
             // console.log(data);
-
-            // TODO : update other terms as well (other than base and rel terms)
 
             // console.log("graph context data : ", graph_context);
 

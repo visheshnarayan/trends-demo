@@ -36,13 +36,13 @@ def create_nyt():
     cleaned_dec21 = []
 
     # clean data
-    for k in jan20: cleaned_jan20.append(''.join(rem_stop_words(k)))
-    for k in aug20: cleaned_aug20.append(''.join(rem_stop_words(k)))
-    for k in dec20: cleaned_dec20.append(''.join(rem_stop_words(k)))
+    for k in jan20: cleaned_jan20.append(rem_stop_words(k))
+    for k in aug20: cleaned_aug20.append(rem_stop_words(k))
+    for k in dec20: cleaned_dec20.append(rem_stop_words(k))
 
-    for k in jan21: cleaned_jan21.append(''.join(rem_stop_words(k)))
-    for k in aug21: cleaned_aug21.append(''.join(rem_stop_words(k)))
-    for k in dec21: cleaned_dec21.append(''.join(rem_stop_words(k)))
+    for k in jan21: cleaned_jan21.append(rem_stop_words(k))
+    for k in aug21: cleaned_aug21.append(rem_stop_words(k))
+    for k in dec21: cleaned_dec21.append(rem_stop_words(k))
 
     # Tokenize
     jan20_vectors = [nltk.word_tokenize(x) for x in cleaned_jan20]

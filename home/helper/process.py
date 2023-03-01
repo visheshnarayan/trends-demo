@@ -9,10 +9,12 @@ from nltk.stem.snowball import SnowballStemmer
 stemmer = SnowballStemmer("english")
 
 # VARS
-num_alphas  = "one,two,three,four,five,six,seven,eight,nine,ten,"
-rem_words = num_alphas
+rem_symbols  = [".", "?", "!", ",","'", "’", "”", ":", "‘", "“", "[", "]", "<", ">", "br/", "-", "#", "(", ")", "*", ";", "note-"]
+rem_words = "one,two,three,four,five,six,seven,eight,nine,ten,"
 rem_words = rem_words.split(',')
 rem_words = [stemmer.stem(t) for t in rem_words]
+
+# Take in a string and remove punctuation, repeat lines, etc.
 
 def rem_stop_words(example_sent):
     
@@ -21,19 +23,17 @@ def rem_stop_words(example_sent):
 
     word_tokens = word_tokenize(example_sent) 
   
-    filtered_sentence = [] 
+    filtered_sentence = ""
   
     for w in word_tokens: 
-        if w not in stop_words: 
-            filtered_sentence.append(w)
-            if w == "." or w == "?" or w == "!" or w == "," or w =="'" or w == "’" or w == "”" or w == ":" or w == "‘" or w == "“":
-                filtered_sentence = filtered_sentence[:-2]
-            filtered_sentence.append(" ")
+        if w not in stop_words and w not in rem_symbols: 
+            filtered_sentence += w + " "
+            # if :
+            #     filtered_sentence = filtered_sentence[:-2]
+            # filtered_sentence.append(" ")
     TreebankWordDetokenizer().detokenize(filtered_sentence)
     return(filtered_sentence) 
 
-# Take in a string and remove punctuation, repeat lines, etc.
-# RETURN: string (cleaned up)
 def cleaner(text):
     text = re.sub('NOTE- TERMS IN BRACKETS HAVE BEEN EDITED TO PROTECT CONFIDENTIALITY','', text)
     text = re.sub('<BR/>',' ', text)

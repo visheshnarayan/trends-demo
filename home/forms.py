@@ -2,7 +2,16 @@ from django import forms
  
 # creating a form
 class TrendForm(forms.Form):
-    model_type = forms.ChoiceField(choices=[('nyt', "New York Times Data")])
+    # COMMENT : add trend models here
+    choices = [
+        ('nyt', "New York Times Dataset"),
+        ('healthcare', "Old Age Home Reports Dataset"),
+    ]
+
+    model_type = forms.ChoiceField(choices=choices)
+
+    # TODO : add logic to make the base term only selectable in commom words autofil dropdown
+
     base_term = forms.CharField(max_length = 200, required=True, widget=forms.TextInput(
         attrs={
             'class': 'form-control basicAutoComplete',

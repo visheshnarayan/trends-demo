@@ -1,4 +1,5 @@
 import pandas as pd
+from functools import reduce
 
 def convert(terms, values):
     context = []
@@ -42,4 +43,7 @@ def graph_dict(X, Y, name, base, terms, labels):
         "rel_terms": terms,
         "period_labels": labels,
     }
+
+def common_terms(mat):
+    return list(reduce(lambda i, j: i & j, (set(x) for x in mat)))
 

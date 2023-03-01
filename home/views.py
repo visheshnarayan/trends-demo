@@ -9,8 +9,7 @@ from home.helper.transform import update_csv, graph_dict
 
 # COMMENT : Import trends here
 from home.helper.trends.nyt.generate import gen_nyt_trends
-
-# TODO : Add urls for generic and elements.html and resolve their assets into static as well
+from home.helper.trends.healthcare.generate import gen_healthcare_trends
 
 # Function to get initial data
 def init():
@@ -32,10 +31,9 @@ def index(req):
     update_csv(rel_terms, values)
     
     # Context dict to send to page
-    # TODO : generate ranges (X & Y)
     context = {
         "context": {
-            "graph": graph_dict(7, 1.2, name, base_term, rel_terms, labels),
+            "graph": graph_dict(len(labels[0])+2, 1.2, name, base_term, rel_terms, labels),
             "form": forms.TrendForm()
         }
     }
@@ -69,8 +67,8 @@ def graph_update(req):
             if name == 'nyt':
                 labels, values = gen_nyt_trends(base_term, rel_terms)
             # COMMENT : Add more models here
-            # elif name == 'healthcare':
-            #     labels, values = gen_healthcare_trends(base_term, rel_terms)
+            elif name == 'healthcare':
+                labels, values = gen_healthcare_trends(base_term, rel_terms)
 
             # updating the data stored in the graph csv
             update_csv(rel_terms, values)
@@ -78,7 +76,7 @@ def graph_update(req):
             return JsonResponse({
                 "status":"success",
                 "code": 200,
-                "graph": graph_dict(7, 1.2, name, base_term, rel_terms, labels),
+                "graph": graph_dict(len(labels[0])+2, 1.2, name, base_term, rel_terms, labels),
             })
 
 def term_autocomplete(req, model_type):
@@ -86,8 +84,8 @@ def term_autocomplete(req, model_type):
         if model_type == 'nyt':
             BASE_DIR = "./home/helper/trends/nyt/"
         # COMMENT : Add more models here
-        # elif model_type == 'healthcare':
-        #     BASE_DIR = "./home/helper/trends/healthcare/"
+        elif model_type == 'healthcare':
+            BASE_DIR = "./home/helper/trends/healthcare/"
         else:
             return JsonResponse([], safe=False)
             

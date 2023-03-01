@@ -2,17 +2,16 @@
 from gensim.models import Word2Vec
 from scipy.spatial import distance
 
-BASE_DIR = "./home/helper/trends/nyt/"
+BASE_DIR = "./home/helper/trends/healthcare/"
 
 # labels
-labels = ["jan20", "aug20", "dec20", "jan21", "aug21", "dec21"]
+labels = ["2016", "2017", "2018", "2019"]
 
-def gen_nyt_trends(base_term, rel_terms):
-    # load W2V models
+def gen_healthcare_trends(base_term, rel_terms):
+    # loading models
     models = []
-
     for label in labels:
-        models.append(Word2Vec.load(f"{BASE_DIR}models/{label}.model"))
+        models.append(Word2Vec.load(BASE_DIR + f"models/{label}.model"))
 
     # get similarity scores
     values = []
@@ -31,9 +30,3 @@ def gen_nyt_trends(base_term, rel_terms):
 
     # returning values
     return labels, values
-
-
-    
-    
-
-

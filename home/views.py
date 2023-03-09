@@ -64,9 +64,9 @@ def graph_update(req):
             base_term = form.cleaned_data["base_term"]
             rel_terms = terms
 
+            # COMMENT : Add more models here
             if name == 'nyt':
                 labels, values = gen_nyt_trends(base_term, rel_terms)
-            # COMMENT : Add more models here
             elif name == 'healthcare':
                 labels, values = gen_healthcare_trends(base_term, rel_terms)
 

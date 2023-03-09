@@ -317,6 +317,31 @@ input, select, textarea {
 		border-bottom-color: #eeeeee;
 	}
 
+/* Vishesh additions */
+	.case-study-row::after {
+		content: "";
+		clear: both;
+		display: table;
+	}
+
+	.case-study-column img {
+		float: left;
+		width: 100%;
+		padding: 5px;
+	}
+
+	.zoom {
+		float: left;
+		width: 33.33%;
+		padding: 5px;
+		background-color: aquamarine;
+		transition: transform .2s;
+	}
+
+	.zoom:hover {
+		transform: scale(1.5);
+	}
+
 /* Row */
 
 	.row {

@@ -146,7 +146,26 @@
 				</form>
 
 				<article class="post featured">
+					<h2 class="paper" style="text-align: left">Documentation</h2>
 
+					<br>
+					<h4 style="text-align: left">1. Selecting a dataset</h4>
+					<p>
+						The Trends Visualizer offers users the capability to select between two distinct datasets, namely the <span style="font-family:'Courier New', Courier, monospace; font-weight: bolder; text-decoration-line: initial; background-color:yellow;">New York Times</span> corpus and the <span style="font-family:'Courier New', Courier, monospace; font-weight: bolder; text-decoration-line:initial; background-color:aquamarine;">20 Newsgroup</span> corpus. These datasets contain distinct corpora, each with the potential to facilitate unique trend analyses. By leveraging this functionality, companies and organizations can perform text-based analyses on their own data sets and identify trends therein.
+					</p>
+					<br>
+					<h4 style="text-align: left">2. Selecting a Base Term</h4>
+					<p>
+						In order to generate visualizations of trends over time, a base term must first be carefully selected. The base term serves as a point of reference with which all other relative terms are compared in the visualization of trends. Specifically, in calculating cosine similarity scores (represented on the y-axis), each relative term is evaluated in relation to the chosen base term. To illustrate, suppose the base term selected is <span style="background-color:yellow; font-weight: bolder; font-family:'Courier New', Courier, monospace;">"Unofficial"</span>, and the relative term under consideration is <span style="background-color: aquamarine; font-weight: bolder; font-family:'Courier New', Courier, monospace;">"CDC".</span> The resulting graph visualization would depict the cosine similarity between "Unofficial" and "CDC" over time. While similar trend lines may be generated for other relative terms, it is important to emphasize that all computations are predicated on the chosen base term in conjunction with each respective relative term. <span style="font-style: italic; font-weight: bold; text-decoration-line: underline;">It is important to note</span> that any chosen base words not present within the corpus (words not present in the drop down menu) will yield static trend lines for all of the relative terms with a fixed value of 1.0 along the y-axis.
+					</p>
+					<br>
+					<h4 style="text-align: left">3. Selecting Related Terms</h4>
+					<p>
+						The related terms are lexemes that are displayed in a graphical representation that demonstrates their interdependence over time. The key, located at the uppermost section of the graphical display, designates the corresponding color of each lexeme. By clicking on a specific lexeme in the key, the user can selectively conceal the corresponding trend line within the visualization. In order to effectively utilize the graphical representation of interdependent trends over time, users are advised to carefully select a lexeme from the provided drop-down menu. <span style="font-style: italic; font-weight: bold; text-decoration-line: underline;">It is important to note</span> that any words not present within the corpus (words not present in the drop down menu) will yield a static trend line with a fixed value of 1.0 along the y-axis.
+					</p>
+				</article>
+
+				<article class="post featured">
 					<h3 class="paper" style="text-align: left;">Abstract</h3>
 					<header class="major">
 						<p style="text-align: left;">

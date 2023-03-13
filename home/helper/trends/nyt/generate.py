@@ -5,7 +5,7 @@ from scipy.spatial import distance
 BASE_DIR = "./home/helper/trends/nyt/"
 
 # labels
-labels = ["jan20", "aug20", "dec20", "jan21", "aug21", "dec21"]
+labels = ["Jan20", "Aug20", "Dec20", "Jan21", "Aug21", "Dec21"]
 
 def gen_nyt_trends(base_term, rel_terms):
     # load W2V models

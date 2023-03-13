@@ -10,17 +10,11 @@ $(document).ready(
         data:  serializedData,
 
         success: function(data){
-            // console.log(data);
-
-            // console.log("graph context data : ", graph_context);
-
             // deconstructing graph_context and new data
             graph_context = {
                 ...graph_context,
                 ...data.graph
             }
-
-            // console.log("new graph context data : ", graph_context);
             
             // update graph
             visualize() 
@@ -28,3 +22,11 @@ $(document).ready(
         });
     })
   );
+
+// TODO : make graph responsive
+
+function regraph() {
+    visualize()
+}
+
+window.onresize = regraph;

@@ -10,8 +10,6 @@ class TrendForm(forms.Form):
 
     model_type = forms.ChoiceField(choices=choices)
 
-    # TODO : add logic to make the base term only selectable in commom words autofil dropdown
-
     base_term = forms.CharField(max_length = 200, required=True, widget=forms.TextInput(
         attrs={
             'class': 'form-control basicAutoComplete',

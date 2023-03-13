@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas as pd, math
 from functools import reduce
 
 def convert(terms, values):
@@ -34,10 +34,14 @@ def update_csv(terms, values):
     except:
         return "failure"
 
-def graph_dict(X, Y, name, base, terms, labels):
+def graph_dict(values, name, base, terms, labels):
+    Xval = len(labels)+1
+    max_val = max(map(max, values))
+    Yval = math.ceil(max_val*10)/10 + 0.2 
+
     return {
-        "rangeX": X,
-        "rangeY": Y,
+        "rangeX": Xval,
+        "rangeY": Yval,
         "name" : name,
         "base_term": base,
         "rel_terms": terms,

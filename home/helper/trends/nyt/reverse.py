@@ -11,7 +11,7 @@ def reverse_nyt(base, r1, r2, sub_model):
     r1: string (word)
     r2: string (word)
     '''
-    path="home/helper/trends/nyt/data/"+get_path(sub_model)+".csv"
+    path = f"home/helper/trends/nyt/data/{get_path(sub_model)}.csv"
 
     # load in data
     # U+000A -> unicode for line break

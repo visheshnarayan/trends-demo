@@ -11,6 +11,8 @@ from home.helper.transform import update_csv, graph_dict
 from home.helper.trends.nyt.generate import gen_nyt_trends
 from home.helper.trends.healthcare.generate import gen_healthcare_trends
 
+# TODO : add proper descripion to all functions and methods and files
+
 # Function to get initial data
 def init():
     name = "nyt"

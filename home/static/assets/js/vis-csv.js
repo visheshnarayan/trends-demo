@@ -1,4 +1,3 @@
-// TODO : add responsive design to graph
 // TODO : Add line chart with zoom (https://d3-graph-gallery.com/graph/line_brushZoom.html)
 // TODO : Line Plot with annotations (https://d3-graph-gallery.com/graph/connectedscatter_tooltip.html)
 // TODO : show base term

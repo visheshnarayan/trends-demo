@@ -1,11 +1,7 @@
 // TODO : add responsive design to graph
-// TODO : Add dropdown logic for graph type (https://d3-graph-gallery.com/graph/connectedscatter_select.html)
 // TODO : Add line chart with zoom (https://d3-graph-gallery.com/graph/line_brushZoom.html)
 // TODO : Line Plot with annotations (https://d3-graph-gallery.com/graph/connectedscatter_tooltip.html)
-// TODO : add labels to y axis
 // TODO : show base term
-// TODO : make table formt to input fields
-// TODO : correct graph margins
 
 function visualize(){
     console.log("graph visualize!!!");
@@ -19,7 +15,6 @@ function visualize(){
 
     // clearing data and redrawing
     d3.select("#my_dataviz").selectAll('*').remove();
-    // svg.remove();
 
 
 
@@ -32,7 +27,7 @@ function visualize(){
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+        "translate(" + margin.left + "," + margin.top + ")")
 
     d3.csv(graph_src, function(data) {
 
@@ -59,6 +54,9 @@ function visualize(){
             .domain(allGroup)
             .range(d3.schemeSet2);
 
+        var xScale = d3.scaleBand().range([0, width]).padding(0.4);
+        xScale.domain(graph_context.period_labels);
+
         // console.warn("..1");
         // Add X axis --> it is a date format
         var x = d3.scaleLinear()
@@ -67,13 +65,19 @@ function visualize(){
 
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(xScale))
+            .append("text")
+            .attr("y", height - 250)
+            .attr("x", width - 100)
+            .attr("text-anchor", "end")
+            .attr("stroke", "black")
+            .text("Year");
 
         // console.warn("..2");
         // Add Y axis
         var y = d3.scaleLinear()
         .domain( [0,graph_context.rangeY])
-        .range([ height, 0 ]);
+        .range([ height, 1.5*margin.top + margin.bottom ]);
 
         svg.append("g")
         .call(d3.axisLeft(y));
@@ -132,8 +136,7 @@ function visualize(){
                     .style("font-size", 15)
 
         // temp datafor spacing legend
-        var first = true;
-        var dist = 30;
+        var dist = 20;
         var last = 0;
 
         // Add a legend (interactive)
@@ -144,20 +147,16 @@ function visualize(){
                 .append('g')
                 .append("text")
                     .attr('x', function(d,i){ 
-                        if (first) {
-                            first = false;
-                            last = d.name.length;
-                            return 30;
-                        } else {
-                            dist += (last+2)*9;
-                            last = d.name.length;
-                            return dist;
-                        }	
+                        // dist += (9**(last/(last-3)));
+                        dist += (last+2)*9;
+                        last = d.name.length;
+                        return dist;
                     })
                     .style("stroke-width", 4)
                     .attr('y', 30)
                     .text(function(d) { return d.name; })
                     .style("fill", function(d){ return myColor(d.name) })
+                    .style("border", function(d){ return myColor(d.name) })
                     .style("font-size", 15)
                     .style("cursor", "pointer")
                 .on("click", function(d){

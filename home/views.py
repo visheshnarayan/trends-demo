@@ -1,4 +1,4 @@
-import json, pandas as pd
+import json, pandas as pd, math
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
@@ -15,7 +15,7 @@ from home.helper.trends.healthcare.generate import gen_healthcare_trends
 def init():
     name = "nyt"
     base = "race"
-    terms = ["state", "government", "new", "sports"]
+    terms = ["state", "government", "news", "sports"]
 
     return name, base, terms
 
@@ -33,7 +33,7 @@ def index(req):
     # Context dict to send to page
     context = {
         "context": {
-            "graph": graph_dict(len(labels[0])+2, 1.2, name, base_term, rel_terms, labels),
+            "graph": graph_dict(values, name, base_term, rel_terms, labels),
             "form": forms.TrendForm()
         }
     }
@@ -76,7 +76,7 @@ def graph_update(req):
             return JsonResponse({
                 "status":"success",
                 "code": 200,
-                "graph": graph_dict(len(labels[0])+2, 1.2, name, base_term, rel_terms, labels),
+                "graph": graph_dict(values, name, base_term, rel_terms, labels),
             })
 
 def term_autocomplete(req, model_type):

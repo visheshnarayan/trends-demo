@@ -1,3 +1,4 @@
+# imports
 import json, pandas as pd, math
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
@@ -10,6 +11,10 @@ from home.helper.transform import update_csv, graph_dict
 # COMMENT : Import trends here
 from home.helper.trends.nyt.generate import gen_nyt_trends
 from home.helper.trends.healthcare.generate import gen_healthcare_trends
+
+# COMMENT : Import Reverse logic here
+from home.helper.trends.nyt.reverse import reverse_nyt
+from home.helper.trends.healthcare.reverse import reverse_healthcare
 
 # TODO : add proper descripion to all functions and methods and files
 
@@ -36,7 +41,8 @@ def index(req):
     context = {
         "context": {
             "graph": graph_dict(values, name, base_term, rel_terms, labels),
-            "form": forms.TrendForm()
+            "trendForm": forms.TrendForm(),
+            "revForm": forms.ReverseForm(),
         }
     }
 
@@ -79,6 +85,46 @@ def graph_update(req):
                 "status":"success",
                 "code": 200,
                 "graph": graph_dict(values, name, base_term, rel_terms, labels),
+            })
+
+# TODO : finish thsi method
+def reverse(req):
+    # if request method is POST
+    if req.method == 'POST':
+        # submitted info
+        form = forms.ReverseForm(req.POST)
+
+        # check for django form validity
+        if form.is_valid():
+            # loop through a python dict and add all vales to a list whose key matces a substring?
+            terms = []
+            for k,v in {key: value for key, value in form.cleaned_data.items() if key.startswith('rel')}.items():
+                terms.append(str(v))
+
+            # received data
+            name = form.cleaned_data["model_type"]
+            base_term = form.cleaned_data["base_term"]
+            rel_terms = terms
+
+            # TODO : add reverse logic
+            # # COMMENT : Add more models here
+            # if name == 'nyt':
+            #     labels, values = gen_nyt_trends(base_term, rel_terms)
+            # elif name == 'healthcare':
+            #     labels, values = gen_healthcare_trends(base_term, rel_terms)
+
+            # # updating the data stored in the graph csv
+            # update_csv(rel_terms, values)
+
+            # return JsonResponse({
+            #     "status":"success",
+            #     "code": 200,
+            #     "graph": graph_dict(values, name, base_term, rel_terms, labels),
+            # })
+
+            return JsonResponse({
+                "status":"success",
+                "code": 200,
             })
 
 def term_autocomplete(req, model_type):

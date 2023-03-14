@@ -1,6 +1,6 @@
 $(document).ready(
     $('#graph-form').submit(function(e){
-        console.log("form submit!!!");
+        console.log("graph form submit!!!");
         e.preventDefault();
         var serializedData = $(this).serialize();
 

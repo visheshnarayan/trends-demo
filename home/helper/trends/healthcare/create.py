@@ -88,7 +88,6 @@ def create_common_words():
     for idx, label in enumerate(labels):
         words_data[label] = terms[idx]
 
-    # TODO : Till here
     words_data["common"] = common_terms(terms)
 
     # saving words data

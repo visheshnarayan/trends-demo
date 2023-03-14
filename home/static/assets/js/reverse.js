@@ -21,5 +21,13 @@ $(document).ready(
             // visualize() 
         }
         });
+    }),
+
+    $(function(){
+        $('#revFormFill').click(function() {
+            // TODO : add functionality to fill reverse form with the most similar terms from the above graph context
+            alert("Hello");
+        });
     })
+
   );

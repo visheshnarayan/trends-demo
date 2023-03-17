@@ -11,7 +11,7 @@ def reverse_nyt(base, r1, r2, sub_model):
     r1: string (word)
     r2: string (word)
     '''
-    path="home/helper/trends/nyt/data/"+get_path(sub_model)+".csv"
+    path=f"home/helper/trends/nyt/data/{get_path(sub_model)}.csv"
 
     # load in data
     # U+000A -> unicode for line break
@@ -31,7 +31,7 @@ def reverse_nyt(base, r1, r2, sub_model):
     text=text[text['text'].str.contains(base) & text['text'].str.contains(r1) & text['text'].str.contains(r2)]
 
     # iteration over all texts to save location of words
-    for index, row in text.iterrows():
+    for index, _ in text.iterrows():
         locs[text['id'][index]]=[
             text['text'][index].index(base),
             text['text'][index].index(r1),
@@ -59,3 +59,9 @@ def get_path(sub_model):
         return "jan1"
     if sub_model=="jan21":
         return "jan2"
+    
+path="home/helper/trends/nyt/data/"+get_path("aug20")+".csv"
+text=pd.read_csv(path, sep="U+000A", engine="python")
+text.columns=['text']
+for i in range(0, 5):
+    print(text['text'][i])

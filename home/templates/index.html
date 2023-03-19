@@ -97,40 +97,83 @@
 					{% csrf_token %}
 					<div class="column">
 						<div class="item">
-							{{ context.form.model_type.label_tag }}
-							{{ context.form.model_type }}
+							{{ context.trendForm.model_type.label_tag }}
+							{{ context.trendForm.model_type }}
 						</div>
 						<div class="item">
-							{{ context.form.base_term.label_tag }}
-							{{ context.form.base_term }}
-						</div>
-					</div>
-					<div class="column">
-						<div class="item">
-							{{ context.form.rel_term1.label_tag }}
-							{{ context.form.rel_term1 }}
-						</div>
-						<div class="item">
-							{{ context.form.rel_term2.label_tag }}
-							{{ context.form.rel_term2 }}        
+							{{ context.trendForm.base_term.label_tag }}
+							{{ context.trendForm.base_term }}
 						</div>
 					</div>
 					<div class="column">
 						<div class="item">
-							{{ context.form.rel_term3.label_tag }}
-							{{ context.form.rel_term3 }}
+							{{ context.trendForm.rel_term1.label_tag }}
+							{{ context.trendForm.rel_term1 }}
 						</div>
 						<div class="item">
-							{{ context.form.rel_term4.label_tag }}
-							{{ context.form.rel_term4 }}        
+							{{ context.trendForm.rel_term2.label_tag }}
+							{{ context.trendForm.rel_term2 }}        
+						</div>
+					</div>
+					<div class="column">
+						<div class="item">
+							{{ context.trendForm.rel_term3.label_tag }}
+							{{ context.trendForm.rel_term3 }}
+						</div>
+						<div class="item">
+							{{ context.trendForm.rel_term4.label_tag }}
+							{{ context.trendForm.rel_term4 }}        
 						</div>
 					</div>
 					
 					<!-- FORM SUBMIT BUTTON -->
 					<!-- spacing between button and form -->
 					<br></br> 
-					<input id="formSubmit" type="submit" value=Submit>
+					<input id="formSubmit" type="submit" value="Submit">
 				</form>
+
+				<!-- Reverse Search Form -->
+				<article class="post featured">
+					<h3>Reverse Search Terms in Documents</h3>
+					<!-- TODO : add text-file-showing logic below -->
+					<div id="temp" style="border: 5px solid #eeeeee; padding: 10px; margin-left: 4%; margin-right: 4%; border-radius: 25px;"></div>
+
+					<!-- REVERSE FORM -->
+					<form id="reverse-form" class="form" method="post" autocomplete="off">
+						{% csrf_token %}
+
+						<!-- TODO : figure out why column and item css fails occasionally -->
+						<div class="column">
+							<div class="item">
+								{{ context.trendForm.model_type.label_tag }}
+								{{ context.trendForm.model_type }}
+							</div>
+							<div class="item">
+								{{ context.trendForm.base_term.label_tag }}
+								{{ context.trendForm.base_term }}
+							</div>
+						</div>
+
+						<div class="column">
+							<div class="item">
+								{{ context.trendForm.rel_term1.label_tag }}
+								{{ context.trendForm.rel_term1 }}
+							</div>
+							<div class="item">
+								{{ context.trendForm.rel_term2.label_tag }}
+								{{ context.trendForm.rel_term2 }}
+							</div>
+						</div>
+						
+						<br></br> 
+						<!-- TODO : add logic to fill this -->
+						<input id="revFormFill" type="button" value="Fill Most Similar Terms">
+
+						<!-- FORM SUBMIT BUTTON -->
+						<input id="revFormSubmit" type="submit" value="Search">
+					</form>
+
+				</article>
 
 				<article class="post featured">
 					<h2 class="paper" style="text-align: left">Documentation</h2>
@@ -213,10 +256,16 @@
 
 			<!-- Copyright -->
 			<div id="copyright">
+<<<<<<< HEAD
 				<ul><li>&copy; MindLab, University of Maryland College Park</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+=======
+				<ul><li>&copy; Untitled</li><li>Design: </li></ul>
+>>>>>>> origin
 			</div>
 
 		</div>
+
+		
 
 		<!-- Scripts -->
 		<div>
@@ -238,6 +287,7 @@
 			<script src="{% static 'assets/js/main.js' %}"></script>
 
 			<script type="text/javascript" src="{% static 'assets/js/update-graph.js' %}"></script>
+			<script type="text/javascript" src="{% static 'assets/js/reverse.js' %}"></script>
 		</div>
 	</body>
 </html>

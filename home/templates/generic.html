@@ -80,16 +80,22 @@
 
 					<h2 style="text-align: center;">Background</h2>
 					<header class="major">
-						<h3 style="text-align: left;">Word2Vec</h3>
-						<p style="text-align: left;">
+						<h3 style="text-align: left;"><mark style="text-decoration: underline;">Word2Vec Context</mark></h3>
+						<p style="text-align: left; font-size:14px;">
 							Word2Vec employs two model architectures, continuous bag-of-words (CBoW) and continuous skip-gram, to generate a distributed representation of words. In the former, the current word is predicted from a window of context words, irrespective of their order, while in the latter, the surrounding context words are predicted from the current word, with a greater weightage given to nearby words. The need for word prediction arises from the unlabeled nature of language, which is addressed by an artificial task of predicting a target word from its context and vice versa in skip-gram. The final softmax layer's weights are the embeddings that encode the input word's semantic meaning, with the multinomial distribution defined as follows:
-							<!-- TODO: INSERT EQUATION-->
 						</p>
-						<div style="border: .25in; border-color: aquamarine;">
-							<img src="{% static '/images/w2v_equation.png' %}" alt="Arrow between two images" style="width: 50%;">
-						</div>
+						<img src="{% static '/images/w2v_equation.png' %}" alt="Arrow between two images" style="width: 50%; border: 5px solid rgb(241, 158, 63);">
+						<p style="text-align: left; padding-top: .5in; font-size:14px;">
+							Word2Vec maximizes the probability of the target word w<sub>j</sub> given the surrounding word(s) w<sub>i</sub> by using two representations of the word “w”: v<sub>w</sub> from the rows of the input hidden weight matrix and v’<sub>w</sub> from the columns of the hidden output matrix. Gradient descent is utilized to optimize the embeddings without requiring a labeled dataset. In an online setting, a small step mediated by the learning rate minimizes the distance between the current vectors for w<sub>j</sub> and w<sub>i</sub>, thereby increasing the probability P(w<sub>j</sub> | w<sub>i</sub> ). The process is repeated over the entire corpus, nudging the vectors for words that frequently co-occur closer together until convergence towards a final state of the two vectors. The Distributional Hypothesis posits that words with similar distributional properties share aspects of semantic meaning. For example, sentences in the corpus such as “I like to play X with my friends,” where X is the target word ’w<sub>j</sub>’, may be names of sports or activities that are semantically related.
+						</p>
+						<h3 style="text-align: left; padding-top: 1in;"><mark style="text-decoration: underline;">K-Means Clustering Context</mark></h3>
+						<p style="text-align: left;">
+							K-means clustering is used to give the end-user the flexibility of choosing the subset of information that they may want to target. The user picks a single word topic, which then is converted to a vector, which in-turn is used to find the 100 words closest to it angle-wise with cosine similarity. K-means clustering makes this simple because it essentially finds the center of mass (centroid) of a topic without having the rigid constraints of a Latent Dirichlet Allocation (LDA) [2]. The k-means clustering when mathematically depicted below computes the objective/squared error function that minimizes the distance from centroid to all other data points in a given cluster (mn to all the xn word topics).
+						</p>
+						<img src="{% static '/images/kmeans_equation.png' %}" alt="Arrow between two images" style="width: 50%; border: 5px solid rgb(241, 158, 63);">
 					</header>
 
+					<!-- TODO: pick up, add more method content and create case study anchors -->
 					<h3 class="paper" style="text-align: left;">Methodology</h3>
 					<header class="major">
 						<p style="text-align: left;">

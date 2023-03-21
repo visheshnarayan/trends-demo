@@ -111,30 +111,80 @@
 					</header>
 
 
-					<h3 class="paper" style="text-align: left;">Case Studies</h3><br>
+					<h2 class="paper" style="text-align: center;">Case Studies</h2><br>
 					
-					<!-- TODO: Make case studies images with caption next to them and one large button that takses them to anchor -->  
-					<!-- row div [column div[img], column div[text]] -->
-					<div class="case-study-row" style="width: 100%">
+					<!-- Image caption layout 
+						row div [column div[img], column div[text]] 
+					-->
+
+					<!-- CDC -->
+					<div class="case-study-row" style="width: 100%; height: auto; border: 5px solid #dedbdb; margin: 10px">
 						<div class="case-study-column">
-							<a href="/generic/">
+							<a href="#cdc-case-study">
 								<!-- cdc logo : https://www.northernpublicradio.org/illinois/2020-09-02/trump-administration-and-cdc-order-new-eviction-moratorium -->
-								<img src="{% static '/images/cdc_logo.jpg' %}" alt="CDC logo" style="float: left; width: 33.33%; height: auto; padding: 10px; border: 5px solid rgb(48, 148, 231)"/>
+								<img src="{% static '/images/cdc_logo.jpg' %}" alt="CDC logo" style="float: left; width: 33.33%; height: auto; padding: 10px; border: 5px solid rgb(48, 148, 231);"/>
 							</a>
 						</div>
+						<div style="float: right; width: 66%; height: auto; padding: 10px; margin-top: 20px">
+							<figcaption><cite><a href="#cdc-case-study" style="scroll-behavior: smooth; text-decoration: underline;">CDC vs. Unofficial</a></cite></figcaption>
+							<blockquote>
+								Discover how the Center of Disease Control is viewed as 'unofficial' in the eyes of the status quo through our Trends analysis.
+							</blockquote>
+						</div>
+					</div>
+
+					<!-- COVID-19 -->
+					<div class="case-study-row" style="width: 100%; height: auto; border: 5px solid #dedbdb; margin: 10px">
 						<div class="case-study-column">
-							<a href="/generic/">
-								<img src="{% static '/images/unofficial_cdc.jpeg' %}" alt="Visualization of the word Unofficial's association with the word CDC" style="float: left; width: 33.33%; height: auto; padding: 10px;"/>
+							<a href="#covid-case-study">
+								<!-- COVID image : https://www.hsph.harvard.edu/ecpe/public-health-communication-strategies-covid-19/ -->
+								<img src="{% static '/images/covid_image.jpg' %}" alt="CDC logo" style="float: right; width: 33.33%; height: auto; padding: 10px; border: 5px solid rgb(150, 42, 42)"/>
 							</a>
 						</div>
+						<div style="float: left; width: 66%; height: auto; padding: 10px; margin-top: 20px;">
+							<figcaption><cite><a href="#covid-case-study" style="scroll-behavior: smooth; text-decoration: underline;">COVID-19 Trends</a></cite></figcaption>
+							<blockquote>
+								Unveiling COVID-19 Insights: Exploring NLP Trends to Analyze the Pandemic's Impact on Language
+							</blockquote>
+						</div>
+					</div>
+
+					<!-- Olympics -->
+					<div class="case-study-row" style="width: 100%; height: auto; border: 5px solid #dedbdb; margin: 10px">
 						<div class="case-study-column">
-							<a href="/generic/">
-								<img src="{% static '/images/olympics_2016.png' %}" alt="Visualization of the word Unofficial's association with the word CDC" style="float: left; width: 33.33%; height: auto; padding: 10px; background-color: white;"/>
+							<a href="#covid-case-study">
+								<!-- Olympics image :  https://www.cbssports.com/olympics/news/where-is-the-next-olympics-explaining-where-the-summer-and-winter-games-will-be-held-through-2032/ -->
+								<img src="{% static '/images/olympics_logo.jpg' %}" alt="CDC logo" style="float: left; width: 33.33%; height: auto; padding: 10px; border: 5px solid rgb(88, 208, 130)"/>
 							</a>
 						</div>
-					  </div>
-					  <br>
-					  <!-- button::link to paper --> 
+						<div style="float: left; width: 66%; height: auto; padding: 4px; margin-top: 10px; margin-left: 5px">
+							<figcaption><cite><a href="#olympics-case-study" style="scroll-behavior: smooth; text-decoration: underline;">Olympic's Relevancy with Other Sports</a></cite></figcaption>
+							<blockquote>
+								Analyzing the Shifting Narrative of Olympic Discourse: A Comparative Study of Sporting Events and Their Association Over Time
+							</blockquote>
+						</div>
+					</div>
+
+					<br>
+
+					<section>
+						<h3 id="cdc-case-study" style="margin-top: 50px; padding: 50px">Case Study 1: CDC vs. Unoffocial</h3>
+						<p>
+
+						</p>
+
+						<h3 id="covid-case-study" style="margin-top: 50px; padding: 50px">Case Study 2: COVID-19 Trends</h3>
+						<p>
+
+						</p>
+
+						<h3 id="olympics-case-study" style="margin-top: 50px; padding: 50px">Case Study 3: Olympic's Relevancy with Other Sports</h3>
+						<p>
+
+						</p>
+					</section>
+
+					<!-- button::link to paper --> 
 					<ul class="actions special">
 						<li><a href="https://arxiv.org/abs/2209.11717" class="button large" target="_blank">Full Paper</a></li>
 					</ul>

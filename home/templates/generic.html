@@ -90,7 +90,7 @@
 						</p>
 						<h3 style="text-align: left; padding-top: 1in;"><mark style="text-decoration: underline;">K-Means Clustering Context</mark></h3>
 						<p style="text-align: left;">
-							K-means clustering is used to give the end-user the flexibility of choosing the subset of information that they may want to target. The user picks a single word topic, which then is converted to a vector, which in-turn is used to find the 100 words closest to it angle-wise with cosine similarity. K-means clustering makes this simple because it essentially finds the center of mass (centroid) of a topic without having the rigid constraints of a Latent Dirichlet Allocation (LDA) [2]. The k-means clustering when mathematically depicted below computes the objective/squared error function that minimizes the distance from centroid to all other data points in a given cluster (mn to all the xn word topics).
+							K-means clustering is used to give the end-user the flexibility of choosing the subset of information that they may want to target. The user picks a single word topic, which then is converted to a vector, which in-turn is used to find the 100 words closest to it angle-wise with cosine similarity. K-means clustering makes this simple because it essentially finds the center of mass (centroid) of a topic without having the rigid constraints of a Latent Dirichlet Allocation (LDA). The k-means clustering when mathematically depicted below computes the objective/squared error function that minimizes the distance from centroid to all other data points in a given cluster (mn to all the xn word topics).
 						</p>
 						<img src="{% static '/images/kmeans_equation.png' %}" alt="Arrow between two images" style="width: 50%; border: 5px solid rgb(241, 158, 63);">
 					</header>
@@ -112,10 +112,13 @@
 
 
 					<h3 class="paper" style="text-align: left;">Case Studies</h3><br>
-					<div class="case-study-row">
+					
+					<!-- TODO: Make case studies images with caption next to them and one large button that takses them to anchor -->  
+					<div class="case-study-row" style="width: 100%">
 						<div class="case-study-column">
 							<a href="/generic/">
-								<img src="{% static '/images/vector_space.JPEG' %}" alt="Visualization of the word Unofficial's association with the word CDC" style="float: left; width: 33.33%; height: auto; padding: 10px;"/>
+								<!-- cdc logo : https://www.northernpublicradio.org/illinois/2020-09-02/trump-administration-and-cdc-order-new-eviction-moratorium -->
+								<img src="{% static '/images/cdc_logo.jpg' %}" alt="Visualization of the word Unofficial's association with the word CDC" style="float: left; width: 33.33%; height: auto; padding: 10px; border: 5px solid rgb(48, 148, 231)"/>
 							</a>
 						</div>
 						<div class="case-study-column">

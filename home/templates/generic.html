@@ -147,7 +147,7 @@
 					<!-- Olympics -->
 					<div class="case-study-row" style="width: 100%; height: auto; border: 5px solid #dedbdb; margin: 10px">
 						<div class="case-study-column">
-							<a href="#covid-case-study">
+							<a href="#olympics-case-study">
 								<!-- Olympics image :  https://www.cbssports.com/olympics/news/where-is-the-next-olympics-explaining-where-the-summer-and-winter-games-will-be-held-through-2032/ -->
 								<img src="{% static '/images/olympics_logo.jpg' %}" alt="CDC logo" style="float: left; width: 33.33%; height: auto; padding: 10px; border: 5px solid rgb(88, 208, 130)"/>
 							</a>
@@ -164,19 +164,56 @@
 
 					<!-- TODO: Add case study content -->
 					<section>
+
+						<!-- CDC -->
 						<h3 id="cdc-case-study" style="margin-top: 50px; padding: 50px">Case Study 1: CDC vs. Unoffocial</h3>
 						<p>
-
+							The initial instance of the model (refer to Figure 2 and Table 1) illustrates the tendency of a fundamental term in relation to a singular relative term. Specifically, it represents the trend of the term "CDC" over a two-year period, taking into account the months of January, June, and December of 2020 and 2021. In this research, the term "unofficial" is employed as the base term to emphasize the current perception of the Center for Disease Control by the general public. A lower cosine distance value between the two terms implies that the prevailing viewpoint regards the organization as unimportant. Conversely, a higher value indicates a greater degree of trust in the institution by the populace.
+						</p>
+						<div style="width: 100%; height: auto">
+							<img src="{% static '/images/cdc_unofficial.jpg' %}" alt="CDC and Unofficial cosine similarity over time" style="width: 80%; height: auto;">
+						</div>
+						<p>
+							Based on the findings presented in Figure 2 and Table 1, the term "CDC" gained prominence from June 2020, which coincides with the surge in COVID-19 cases. The higher cosine distance value between "CDC" and "Unofficial" suggests that the organization was held in high regard as a trusted source for information and guidance during the pandemic. However, as time progressed, particularly in June and December, the public's trust in government organizations and media declined due to increasing deaths, anti-vaccination sentiments, and growing support for pro-vaccination groups. This resulted in a larger variance in cosine distance, approximately 50%, indicating the growing distrust in the organization.
 						</p>
 
+						<!-- COVID -->
 						<h3 id="covid-case-study" style="margin-top: 50px; padding: 50px">Case Study 2: COVID-19 Trends</h3>
 						<p>
-
+							The initial instance of the model (refer to Figure 2 and Table 1) illustrates the tendency of a fundamental term in relation to a singular relative term. Specifically, it represents the trend of the term "CDC" over a two-year period, taking into account the months of January, June, and December of 2020 and 2021. In this research, the term "unofficial" is employed as the base term to emphasize the current perception of the Center for Disease Control by the general public. A lower cosine distance value between the two terms implies that the prevailing viewpoint regards the organization as unimportant. Conversely, a higher value indicates a greater degree of trust in the institution by the populace.
+						</p>
+						<div style="width: 100%; height: auto">
+							<img src="{% static '/images/covid_fauci.jpg' %}" alt="COVID and relative words cosine similarity over time" style="width: 80%; height: auto;">
+						</div>
+						<p>
+							The present case study serves as a pertinent illustration of the inconsistencies arising from quantifying abstract concepts such as trust and formality in an organizational context. Despite apparent semantic differences, the terms "Unofficial" (see Figure 2 and Table 1) and "Trust" (see Figure 3 and Table 2) exhibit analogous patterns in relation to the Centers for Disease Control and Prevention (CDC), possibly owing to the lack of a universally accepted definition. Notably, both terms indicate substantial variations in values between June and December 2020, reflecting significant shifts in political dynamics and public opinion. While one faction may have perceived the CDC as competent during this period, another may have considered it inept, with some individuals viewing the organization as more reliable. However, the COVID-19 case study further reveals that all related terms, including CDC, Dr. Anthony Fauci (Chief Medical Advisor to the President of the United States), and Experts, display similar trends, highlighting their close interdependence.
 						</p>
 
 						<h3 id="olympics-case-study" style="margin-top: 50px; padding: 50px">Case Study 3: Olympic's Relevancy with Other Sports</h3>
 						<p>
+							The preceding example provided an exception to established trends, but a significant demonstration of the inferential power of these trends can be observed by examining the Olympic games. Due to their cyclical occurrence every four years, focused sub-topics (specific sports contested in the Olympics), and absence of controversial opinions, the Olympic games represent a suitable subject for the current study. The model used in this research set "Olympics" as the base term and identified pivotal sporting events, including "Track", "Tennis", "Gymnastics", and "Race", as well as certain sports that are not part of the Olympics, such as American Football, designated as the relative term "Football". These trends were generated over a three-year period (2016, 2017, and 2021), with 2017 being the only non-Olympic year. The study analyzed five months in each of these years (January, March, July, September, and December) to identify these trends.
+						</p>
+						<h4 style="font-size: larger; text-decoration: underline;">2016 Trends</h4>
+						<div style="width: 100%; height: auto">
+							<img src="{% static '/images/olympics_2016.jpg' %}" alt="Olympics and other sports cosine similarity over time" style="width: 80%; height: auto;">
+						</div>
+						<p>
+							This study analyzed trends in Olympic sports, specifically track, tennis, and gymnastics, using data from sports articles. Results revealed that these sports share similar trends, in contrast to American Football which remains relatively constant. The study also found that the 2016 Summer Olympics, held in Rio de Janeiro, Brazil, from August 5th to 21st with some preliminary events starting on August 3rd, had the highest convergence in relative terms related to the Olympics during the month of July 2016.
+						</p>
+						<h4 style="font-size: larger; text-decoration: underline;">2017 Trends</h4>
+						<div style="width: 100%; height: auto">
+							<img src="{% static '/images/olympics_2017.jpg' %}" alt="Olympics and other sports cosine cosine similarity over time" style="width: 80%; height: auto;">
+						</div>
+						<p>
+							The present study employed sports articles and miscellaneous sources to generate trends in 2017, utilizing the same relative and base term as in the previous analysis. The trends exhibit limited variation over time, in contrast to the convergence observed in the 2016 sports trends. Notably, 2017 is not an Olympic year, which may account for the stability and consistency of the trends. It is possible that specific events related to the sport may influence the crest and trough of the trends and thus impact the relative term. However, since there are no common entities among them, no discernible trends were identified. These findings suggest the importance of considering contextual factors when analyzing trends.
+						</p>
 
+						<h4 style="font-size: larger; text-decoration: underline;">2017 Trends</h4>
+						<div style="width: 100%; height: auto">
+							<img src="{% static '/images/olympics_2021.jpg' %}" alt="Olympics and other sports cosine cosine similarity over time" style="width: 80%; height: auto;">
+						</div>
+						<p>
+							The present study finds substantial similarity between the trends of 2021 and 2016, indicating the reproducibility and periodicity of the generated trends. Notably, the 2020 Summer Olympics (Tokyo 2020) was held from July 23rd to August 8th, 2021, with preliminary events starting on July 21st. Consistent with the 2016 Olympics, the analysis reveals the highest convergence in relative terms related to the Olympics during the month of July 2021. These results suggest a cyclical pattern in the identified trends and underscore the utility of the present methodology in capturing meaningful patterns across Olympic events.
 						</p>
 					</section>
 

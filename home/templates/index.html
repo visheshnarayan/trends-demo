@@ -4,7 +4,7 @@
 {% load widget_tweaks %}
 <html>
 	<head>
-		<title>Trends</title>
+		<title>Trends - Demo</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
@@ -58,16 +58,12 @@
 			<!-- Nav -->
 			<nav id="nav">
 				<ul class="links">
-					<li class="active"><a href="">Trends Demo</a></li>
+					<li class="active"><a href="/">Trends Demo</a></li>
 					<li><a href="/generic/">Methodology and Case Studies</a></li>
-					<li><a href="/elements/">Mathematical Design</a></li>
 					<li><a href="/elements/">About Us</a></li>
 				</ul>
 				<ul class="icons">
-					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+					<li><a href="https://github.com/angadsinghsandhu/trends-demo" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 				</ul>
 			</nav>
 
@@ -180,169 +176,39 @@
 				</article>
 
 				<article class="post featured">
-					<h2 class="paper" style="text-align: left">Documentation</h2>
 
+					<h2 class="paper" style="text-align: center">How to Use the Trends Visualizer</h2>
 					<br>
-					<h4 style="text-align: left">1. Selecting a dataset</h4>
+					
+					<h4 style="text-align: left; text-decoration: underline;">1. Selecting a dataset</h4>
 					<p>
 						The Trends Visualizer offers users the capability to select between two distinct datasets, namely the <span style="font-family:'Courier New', Courier, monospace; font-weight: bolder; text-decoration-line: initial; background-color:yellow;">New York Times</span> corpus and the <span style="font-family:'Courier New', Courier, monospace; font-weight: bolder; text-decoration-line:initial; background-color:aquamarine;">20 Newsgroup</span> corpus. These datasets contain distinct corpora, each with the potential to facilitate unique trend analyses. By leveraging this functionality, companies and organizations can perform text-based analyses on their own data sets and identify trends therein.
 					</p>
 					<br>
-					<h4 style="text-align: left">2. Selecting a Base Term</h4>
+					<h4 style="text-align: left; text-decoration: underline;">2. Selecting a Base Term</h4>
 					<p>
 						In order to generate visualizations of trends over time, a base term must first be carefully selected. The base term serves as a point of reference with which all other relative terms are compared in the visualization of trends. Specifically, in calculating cosine similarity scores (represented on the y-axis), each relative term is evaluated in relation to the chosen base term. To illustrate, suppose the base term selected is <span style="background-color:yellow; font-weight: bolder; font-family:'Courier New', Courier, monospace;">"Unofficial"</span>, and the relative term under consideration is <span style="background-color: aquamarine; font-weight: bolder; font-family:'Courier New', Courier, monospace;">"CDC".</span> The resulting graph visualization would depict the cosine similarity between "Unofficial" and "CDC" over time. While similar trend lines may be generated for other relative terms, it is important to emphasize that all computations are predicated on the chosen base term in conjunction with each respective relative term. <span style="font-style: italic; font-weight: bold; text-decoration-line: underline;">It is important to note</span> that any chosen base words not present within the corpus (words not present in the drop down menu) will yield static trend lines for all of the relative terms with a fixed value of 1.0 along the y-axis.
 					</p>
 					<br>
-					<h4 style="text-align: left">3. Selecting Related Terms</h4>
+					<h4 style="text-align: left; text-decoration: underline;">3. Selecting Related Terms</h4>
 					<p>
 						The related terms are lexemes that are displayed in a graphical representation that demonstrates their interdependence over time. The key, located at the uppermost section of the graphical display, designates the corresponding color of each lexeme. By clicking on a specific lexeme in the key, the user can selectively conceal the corresponding trend line within the visualization. In order to effectively utilize the graphical representation of interdependent trends over time, users are advised to carefully select a lexeme from the provided drop-down menu. <span style="font-style: italic; font-weight: bold; text-decoration-line: underline;">It is important to note</span> that any words not present within the corpus (words not present in the drop down menu) will yield a static trend line with a fixed value of 1.0 along the y-axis.
 					</p>
 				</article>
 
-				<!-- Posts NOT NEEDED::could use later for links to our githubs -->
-				<!-- Posts -->
-				<!-- <section class="posts">
-					<article>
-						<header>
-							<span class="date">April 24, 2017</span>
-							<h2><a href="#">Sed magna<br />
-							ipsum faucibus</a></h2>
-						</header>
-						<a href="#" class="image fit"><img src="{% static 'images/pic02.jpg' %}" alt="" /></a>
-						<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-						<ul class="actions special">
-							<li><a href="#" class="button">Full Story</a></li>
-						</ul>
-					</article>
-					<article>
-						<header>
-							<span class="date">April 22, 2017</span>
-							<h2><a href="#">Primis eget<br />
-							imperdiet lorem</a></h2>
-						</header>
-						<a href="#" class="image fit"><img src="{% static 'images/pic03.jpg' %}" alt="" /></a>
-						<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-						<ul class="actions special">
-							<li><a href="#" class="button">Full Story</a></li>
-						</ul>
-					</article>
-					<article>
-						<header>
-							<span class="date">April 18, 2017</span>
-							<h2><a href="#">Ante mattis<br />
-							interdum dolor</a></h2>
-						</header>
-						<a href="#" class="image fit"><img src="{% static 'images/pic04.jpg' %}" alt="" /></a>
-						<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-						<ul class="actions special">
-							<li><a href="#" class="button">Full Story</a></li>
-						</ul>
-					</article>
-					<article>
-						<header>
-							<span class="date">April 14, 2017</span>
-							<h2><a href="#">Tempus sed<br />
-							nulla imperdiet</a></h2>
-						</header>
-						<a href="#" class="image fit"><img src="{% static 'images/pic05.jpg' %}" alt="" /></a>
-						<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-						<ul class="actions special">
-							<li><a href="#" class="button">Full Story</a></li>
-						</ul>
-					</article>
-					<article>
-						<header>
-							<span class="date">April 11, 2017</span>
-							<h2><a href="#">Odio magna<br />
-							sed consectetur</a></h2>
-						</header>
-						<a href="#" class="image fit"><img src="{% static 'images/pic06.jpg' %}" alt="" /></a>
-						<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-						<ul class="actions special">
-							<li><a href="#" class="button">Full Story</a></li>
-						</ul>
-					</article>
-					<article>
-						<header>
-							<span class="date">April 7, 2017</span>
-							<h2><a href="#">Augue lorem<br />
-							primis vestibulum</a></h2>
-						</header>
-						<a href="#" class="image fit">
-							<img src="{% static 'images/pic07.jpg' %}" alt="Picture 7" />
-						</a>
-						<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis magna etiam.</p>
-						<ul class="actions special">
-							<li><a href="#" class="button">Full Story</a></li>
-						</ul>
-					</article>
-				</section> -->
-
 				<!-- Footer -->
-				<!-- TODO: Add style to .pagination a, hover animation + padding -->
 				<footer>
 					<div class="pagination">
-						<!--<a href="#" class="previous">Prev</a>-->
-						<!-- Add paddding in button -->
 						<a href="#" class="pagination">Trends Demo</a>
 						<a href="/generic/" class="pagination">Methodology and Case Studies</a>
-						<a href="#" class="pagination">About Us</a>
+						<a href="/elements/" class="pagination">About Us</a>
 					</div>
 				</footer>
 			</div>
 
-			<!-- Footer -->
-			<!-- <footer id="footer">
-				<section>
-					<form method="post" action="#">
-						<div class="fields">
-							<div class="field">
-								<label for="name">Name</label>
-								<input type="text" name="name" id="name" />
-							</div>
-							<div class="field">
-								<label for="email">Email</label>
-								<input type="text" name="email" id="email" />
-							</div>
-							<div class="field">
-								<label for="message">Message</label>
-								<textarea name="message" id="message" rows="3"></textarea>
-							</div>
-						</div>
-						<ul class="actions">
-							<li><input type="submit" value="Send Message" /></li>
-						</ul>
-					</form>
-				</section>
-				<section class="split contact">
-					<section class="alt">
-						<h3>Address</h3>
-						<p>1234 Somewhere Road #87257<br />
-						Nashville, TN 00000-0000</p>
-					</section>
-					<section>
-						<h3>Phone</h3>
-						<p><a href="#">(000) 000-0000</a></p>
-					</section>
-					<section>
-						<h3>Email</h3>
-						<p><a href="#">info@untitled.tld</a></p>
-					</section>
-					<section>
-						<h3>Social</h3>
-						<ul class="icons alt">
-							<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</section>
-				</section>
-			</footer> -->
-
 			<!-- Copyright -->
 			<div id="copyright">
-				<ul><li>&copy; Untitled</li><li>Design: </li></ul>
+				<ul><li>&copy; MindLab, University of Maryland College Park</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
 			</div>
 
 		</div>

@@ -2,6 +2,75 @@
 @import url("https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900");
 
 /* ======================== Vishesh styling ======================== */
+
+.slider {
+	margin: 50px;
+}
+
+.slider::before,
+.slider::after {
+	box-sizing: border-box;
+}
+
+.slider .carousel {
+	width: 100%;
+	position: relative;
+}
+
+.slider .carousel > ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	list-style-type: none;
+}
+
+.slider .carousel-button {
+	position: relative;
+	z-index: 2;
+	background: none;
+	font-size: 2rem;
+	color: none;
+	cursor: pointer;
+	top: 10px;
+}
+ 
+.slider .carousel-button:hover {
+	color: aquamarine;
+	border-color: aquamarine;
+	background-color: white;
+}
+
+.slider .carousel-button.prev {
+	right: 10px;
+}
+
+.slider .carousel-button.next {
+	left: 10px;
+}
+
+.slider .slide {
+	position: relative;
+	inset: 0;
+	opacity: 0;
+}
+
+.slider .slide > div {
+	font-size: large;
+	position: relative;
+	border: 3px solid rgb(0, 0, 0);
+	text-align: center;
+	padding: 0 1rem;
+}
+
+.slider .slide > li {
+	display: inline-block;
+	list-style-type: none;
+}
+
+.slider .slide[data-active] {
+	opacity: 1;
+}
+
 /* ================================================================= */
 
 html, body, div, span, applet, object,
@@ -22,6 +91,7 @@ section, summary, time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 	scroll-behavior: smooth;
+	list-style-type: none;
 }
 
 article, aside, details, figcaption, figure,

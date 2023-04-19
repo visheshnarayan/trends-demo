@@ -137,7 +137,18 @@
 				<article class="post featured">
 					<h3>Reverse Search Terms in Documents</h3>
 					<!-- TODO : add text-file-showing logic below -->
-					<div id="temp" style="border: 5px solid #eeeeee; padding: 10px; margin-left: 4%; margin-right: 4%; border-radius: 25px;"></div>
+					<!-- <article> -->
+					<div class="slider">
+						<div class="carousel" data-carousel>
+							<section aria-label="Reverse Queried Documents">
+								<ul data-slides class="slides" id="slides">
+										<li class="slide" id="first-slide" data-active></li>
+								</ul>
+							</section>
+							<button class="carousel-button prev" data-carousel-button="prev">&#8249;</button>
+							<button class="carousel-button next" data-carousel-button="next">&#8250;</button>
+						</div>
+					</div>
 
 					<!-- REVERSE FORM -->
 					<form id="reverse-form" class="form" method="post" autocomplete="off">
@@ -177,18 +188,6 @@
 					<!-- TODO fix text styling::text shows but not in slides format; shows as normal list -->
 					<!-- context | safe is the data itself -->
 					<!-- {{ context | safe }} -->
-					<div class="carousel" data-carousel>
-						<button class="carousel-button prev" data-carousel-button="prev">&#8249;</button>
-						<button class="carousel-button next" data-carousel-button="next">&#8250;</button>
-						<section aria-label="Reverse Queried Documents">
-						<!-- use jquery to query this element
-						append data into <ul> -->
-						   <ul data-slides class="slides" id="slides">
-								<li class="slide" id="first-slide" data-active></li>
-						   </ul>
-						</section>
-					 </div>
-
 				</article>
 
 				<article class="post featured">

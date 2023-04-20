@@ -24,6 +24,7 @@
 		<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 		<script type="text/javascript" src="{% static 'assets/js/vis-csv.js' %}"></script>
+		<script type="text/javascript" src="{% static 'assets/js/reverse.js' %}"></script>
 	</head>
 
 	<!-- TODO : Make Dark (Background = #181a1b) (Text = #cecac3) -->
@@ -136,7 +137,18 @@
 				<article class="post featured">
 					<h3>Reverse Search Terms in Documents</h3>
 					<!-- TODO : add text-file-showing logic below -->
-					<div id="temp" style="border: 5px solid #eeeeee; padding: 10px; margin-left: 4%; margin-right: 4%; border-radius: 25px;"></div>
+					<!-- <article> -->
+					<div class="slider">
+						<div class="carousel" data-carousel>
+							<section aria-label="Reverse Queried Documents">
+								<ul data-slides class="slides" id="slides">
+										<li class="slide" id="first-slide" data-active></li>
+								</ul>
+							</section>
+							<button class="carousel-button prev" data-carousel-button="prev">&#8249;</button>
+							<button class="carousel-button next" data-carousel-button="next">&#8250;</button>
+						</div>
+					</div>
 
 					<!-- REVERSE FORM -->
 					<form id="reverse-form" class="form" method="post" autocomplete="off">
@@ -173,6 +185,9 @@
 						<input id="revFormSubmit" type="submit" value="Search">
 					</form>
 
+					<!-- TODO fix text styling::text shows but not in slides format; shows as normal list -->
+					<!-- context | safe is the data itself -->
+					<!-- {{ context | safe }} -->
 				</article>
 
 				<article class="post featured">
@@ -219,8 +234,12 @@
 		<div>
 			<script>
 				var graph_src = "{%  static 'csv/graph-data.csv' %}";
+				// takes data and visualizes with JSON
 				var graph_context = JSON.parse("{{ context.graph | safe }}".replace(/'/g, '"'));
 				visualize();
+				var reverse_context = JSON.parse("{{ context.revData | safe }}".replace(/'/g, '"'))
+				update_carousel();
+
 			</script>
 
 			<!-- page javascript -->
@@ -235,7 +254,7 @@
 			<script src="{% static 'assets/js/main.js' %}"></script>
 
 			<script type="text/javascript" src="{% static 'assets/js/update-graph.js' %}"></script>
-			<script type="text/javascript" src="{% static 'assets/js/reverse.js' %}"></script>
+			<script type="text/javascript" src="{% static 'assets/js/update-rev.js' %}"></script>
 		</div>
 	</body>
 </html>

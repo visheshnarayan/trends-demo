@@ -42,6 +42,18 @@ def index(req):
         "context": {
             "graph": graph_dict(values, name, base_term, rel_terms, labels),
             "trendForm": forms.TrendForm(),
+            "revData": {
+                "base": "race",
+                "rel1": "government", 
+                "rel2": "news",
+                "docs": [
+                    "In College Football, No Player Escapes the Eye of the Strength Coach/tHead coaches and players emphasize the importance of the strength coach, and salaries for the position at top college football programs are growing.",
+                    "Where CPR on a Boy Is Time Wasted: U.S. Doctors Recall Aleppo’s Horrors/tThree American doctors provided a personal perspective on the deepening emergency in a Syrian city where local doctors have grown weary of the bloodshed.",
+                    "Israel’s Benjamin Netanyahu, Still a Step Ahead of Scandals, Faces a New Inquiry/tThe new attorney general says he will take a hard line, but Mr. Netanyahu has shown he can slip away from accusations with Teflon-coated ease.",
+                    "Russia’s Acres, if Not Its Locals, Beckon Chinese Farmers/tWith farmland in China scarce, migrants are crossing the border to lease large, unused tracts in the Far East, where many residents grumble about their presence and hard work.",
+                    "Exaggerator Storms Down the Stretch to Win the Haskell Invitational/tOn a sloppy track, Nyquist, the Kentucky Derby winner, faded to fourth in a field of six."
+                ]
+            },
             "revForm": forms.ReverseForm(),
         }
     }

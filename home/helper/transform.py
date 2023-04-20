@@ -1,3 +1,4 @@
+import re
 import pandas as pd, math
 from functools import reduce
 
@@ -47,6 +48,27 @@ def graph_dict(values, name, base, terms, labels):
         "rel_terms": terms,
         "period_labels": labels,
     }
+
+def reverse_doc(strs, base, rel1, rel2):
+    docs = []
+    
+    for doc in strs:
+        sub = re.sub(r"(@\[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)|^rt|http.+?", "", doc)
+        clean = list(sub.lower().split())
+        
+        base = base.lower()
+        r1 = rel1.lower()
+        r2 = rel2.lower()
+        
+        pos_base = clean.index(base) if base in clean else -1
+        pos_r1 = clean.index(r1) if r1 in clean else -1
+        pos_r2 = clean.index(r2) if r2 in clean else -1
+        
+        pos = [pos_base, pos_r1, pos_r2]
+        
+        docs.append((doc, pos))
+    
+    return docs
 
 def common_terms(mat):
     return list(reduce(lambda i, j: i & j, (set(x) for x in mat)))

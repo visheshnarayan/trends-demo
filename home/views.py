@@ -46,6 +46,7 @@ def index(req):
                 "base": "race",
                 "rel1": "government", 
                 "rel2": "news",
+                # TODO : update docs data structure to also include position data of terms
                 "docs": [
                     "In College Football, No Player Escapes the Eye of the Strength Coach/tHead coaches and players emphasize the importance of the strength coach, and salaries for the position at top college football programs are growing.",
                     "Where CPR on a Boy Is Time Wasted: U.S. Doctors Recall Aleppo’s Horrors/tThree American doctors provided a personal perspective on the deepening emergency in a Syrian city where local doctors have grown weary of the bloodshed.",
@@ -120,10 +121,16 @@ def reverse(req):
 
             # TODO : add reverse logic
             # # COMMENT : Add more models here
-            # if name == 'nyt':
-            #     labels, values = gen_nyt_trends(base_term, rel_terms)
-            # elif name == 'healthcare':
-            #     labels, values = gen_healthcare_trends(base_term, rel_terms)
+            if name == 'nyt':
+                rev_data = reverse_nyt(base_term, rel_terms[0], rel_terms[1], 'aug20')
+            elif name == 'healthcare':
+                # example:
+                #   base: diseases
+                #   rel1:  infections
+                #   rel1:  cleaning
+                rev_data = reverse_healthcare(base_term, rel_terms[0], rel_terms[1], '2019')
+
+            print(rev_data)
 
             # # updating the data stored in the graph csv
             # update_csv(rel_terms, values)
@@ -134,10 +141,10 @@ def reverse(req):
             #     "graph": graph_dict(values, name, base_term, rel_terms, labels),
             # })
 
-            return JsonResponse({
-                "status":"success",
-                "code": 200,
-            })
+            # return JsonResponse({
+            #     "status":"success",
+            #     "code": 200,
+            # })
 
 def term_autocomplete(req, model_type):
     if req.GET.get('q'):

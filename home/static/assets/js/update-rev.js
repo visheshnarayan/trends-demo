@@ -16,14 +16,14 @@ $(document).ready(
             // TODO : preset filled in words with displayed text anagolous to trends graph above 
             
             // deconstructing graph_context and new data
-            let texts = data['text']
+            reverse_context['docs'] = data['text'];
             // graph_context = {
             //     ...graph_context,
             //     ...data.graph
             // }
             
-            // // update graph
-            // visualize() 
+            // // update carosel
+            update_carousel()
             }
         });
     }),

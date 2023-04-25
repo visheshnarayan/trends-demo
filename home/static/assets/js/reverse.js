@@ -1,18 +1,11 @@
 /**
- * TODO: DELETE ALL console.log after done debug
- * issue: all texts not loaded into div
- * 
- * notes: 
- * scope issue? are the slides not seeing the text? 
- * 
- * TASK: show all slides
- * NEXT: unpack new datatype 
+ * TASK: unpack new datatype 
  */
 function update_carousel(){
     console.log("inside carousel function");
     console.warn(reverse_context);
 
-    //reverse_context["docs"] -> text data
+    // reverse_context["docs"] -> text data
     // will be changed to access text inside new data structure
     const texts = reverse_context['docs'];
     texts.forEach(text => {

@@ -48,7 +48,13 @@
 	left: 10px;
 }
 
+.slider .slides {
+	display: grid;
+}
+
 .slider .slide {
+	grid-column: 1;
+	grid-row: 1;
 	position: relative;
 	inset: 0;
 	opacity: 0;
@@ -56,7 +62,6 @@
 
 .slider .slide > div {
 	font-size: large;
-	position: relative;
 	border: 3px solid rgb(0, 0, 0);
 	text-align: center;
 	padding: 0 1rem;

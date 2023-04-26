@@ -85,7 +85,6 @@ def graph_update(req):
             base_term = form.cleaned_data["base_term"]
             rel_terms = terms
 
-            # COMMENT : Add more models here
             if name == 'nyt':
                 labels, values = gen_nyt_trends(base_term, rel_terms)
             elif name == 'healthcare':
@@ -150,7 +149,6 @@ def term_autocomplete(req, model_type):
     if req.GET.get('q'):
         if model_type == 'nyt':
             BASE_DIR = "./home/helper/trends/nyt/"
-        # COMMENT : Add more models here
         elif model_type == 'healthcare':
             BASE_DIR = "./home/helper/trends/healthcare/"
         else:

@@ -3,7 +3,7 @@ import pandas as pd
 import nltk, os, json
 from gensim.models import Word2Vec
 
-from home.helper.process import rem_stop_words, cleaner
+from home.helper.process import rem_stop_words
 from home.helper.transform import common_terms
 
 BASE_DIR = "./home/helper/trends/healthcare/"
@@ -93,8 +93,3 @@ def create_common_words():
     # saving words data
     with open(BASE_DIR + 'words.json', 'w') as fp:
         json.dump(words_data, fp, indent=4)
-
-
-    
-
-

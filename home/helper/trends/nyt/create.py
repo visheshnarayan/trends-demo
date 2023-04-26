@@ -12,20 +12,20 @@ labels = ["jan20", "aug20", "dec20", "jan21", "aug21", "dec21"]
 
 def create_nyt():
     print(os.getcwd())
-    jan20 = pd.read_csv(BASE_DIR + "data/jan1.csv", delimiter = "/t", engine='python')
-    aug20 = pd.read_csv(BASE_DIR + "data/aug1.csv", delimiter = "/t", engine='python')
-    dec20 = pd.read_csv(BASE_DIR + "data/dec1.csv", delimiter = "/t", engine='python')
-    jan21 = pd.read_csv(BASE_DIR + "data/jan2.csv", delimiter = "/t", engine='python')
-    aug21 = pd.read_csv(BASE_DIR + "data/aug2.csv", delimiter = "/t", engine='python')
-    dec21 = pd.read_csv(BASE_DIR + "data/dec2.csv", delimiter = "/t", engine='python')
+    jan20 = pd.read_csv(BASE_DIR + "data/jan1.csv", encoding = "utf-8", engine='python')
+    aug20 = pd.read_csv(BASE_DIR + "data/aug1.csv", encoding = "utf-8", engine='python')
+    dec20 = pd.read_csv(BASE_DIR + "data/dec1.csv", encoding = "utf-8", engine='python')
+    jan21 = pd.read_csv(BASE_DIR + "data/jan2.csv", encoding = "utf-8", engine='python')
+    aug21 = pd.read_csv(BASE_DIR + "data/aug2.csv", encoding = "utf-8", engine='python')
+    dec21 = pd.read_csv(BASE_DIR + "data/dec2.csv", encoding = "utf-8", engine='python')
 
     # select data
-    jan20 = jan20['Headlines'].map(str) + '. ' + jan20['Glances'].map(str)
-    aug20 = aug20['Headlines'].map(str) + '. ' + aug20['Glances'].map(str)
-    dec20 = dec20['Headlines'].map(str) + '. ' + dec20['Glances'].map(str)
-    jan21 = jan21['Headlines'].map(str) + '. ' + jan21['Glances'].map(str)
-    aug21 = aug21['Headlines'].map(str) + '. ' + aug21['Glances'].map(str)
-    dec21 = dec21['Headlines'].map(str) + '. ' + dec21['Glances'].map(str)
+    jan20 = jan20['Headlines'].map(str)
+    aug20 = aug20['Headlines'].map(str)
+    dec20 = dec20['Headlines'].map(str)
+    jan21 = jan21['Headlines'].map(str)
+    aug21 = aug21['Headlines'].map(str)
+    dec21 = dec21['Headlines'].map(str)
 
     # list for clean data
     cleaned_jan20 = []

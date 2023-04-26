@@ -15,8 +15,6 @@ function visualize(){
     // clearing data and redrawing
     d3.select("#my_dataviz").selectAll('*').remove();
 
-
-
     // append the svg object to the body of the page
     // svg.remove();
     var svg = d3.select("#my_dataviz")

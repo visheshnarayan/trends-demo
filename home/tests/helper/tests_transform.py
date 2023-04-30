@@ -15,8 +15,8 @@ class TestReverseDoc(unittest.TestCase):
             "rel1": rel1,
             "rel2": rel2,
             "docs": [
-                (strs[0], [3, 1, -1]), 
-                (strs[1], [1, -1, 0])
+                [strs[0], [3, 1, -1]], 
+                [strs[1], [1, -1, 0]]
         ]}
         
         self.assertEqual(result, expected_result, f'Expected {expected_result}, but got {result}')

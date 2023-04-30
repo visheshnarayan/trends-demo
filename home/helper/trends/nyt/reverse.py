@@ -21,5 +21,9 @@ def reverse_nyt(base, r1, r2):
     # check for base 
     text=text[text["Headlines"].str.contains(f"(?i){base}")]
 
-    # return list with texts containing r1 OR r2 with dropped duplicates
-    return text[text["Headlines"].str.contains(f"(?i){r1}|{r2}")].drop_duplicates()["Headlines"].to_list()
+    # list with texts containing r1 OR r2 with dropped duplicates
+    text = text[text["Headlines"].str.contains(f"(?i){r1}|{r2}")].drop_duplicates()["Headlines"].to_list()
+
+    # replacing apostrophe
+    single = lambda x: x.replace("\'", "")
+    return list(map(single, text))

@@ -79,4 +79,3 @@ def reverse_doc(strs, base, rel1, rel2):
 
 def common_terms(mat):
     return list(reduce(lambda i, j: i & j, (set(x) for x in mat)))
-

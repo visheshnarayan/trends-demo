@@ -21,4 +21,8 @@ def reverse_healthcare(base, r1, r2):
     text=text[text["inspection_text"].str.contains(f"(?i){base}")]
 
     # return list with texts containing r1 OR r2 with dropped duplicates
-    return text[text["inspection_text"].str.contains(f"(?i){r1}|{r2}")].drop_duplicates()["inspection_text"].to_list()
+    text = text[text["inspection_text"].str.contains(f"(?i){r1}|{r2}")].drop_duplicates()["inspection_text"].to_list()
+
+    # replacing apostrophe
+    single = lambda x: x.replace("\'", "")
+    return list(map(single, text))

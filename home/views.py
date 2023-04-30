@@ -31,6 +31,10 @@ def init():
         "Exaggerator Storms Down the Stretch to Win the Haskell Invitational On a sloppy track, Nyquist, the Kentucky Derby winner, faded to fourth in a field of six."
     ]
 
+    docs = reverse_nyt(base, terms[0], terms[1])
+
+    print(docs)
+
     return name, base, terms, docs
 
 # Create your views here.
@@ -43,13 +47,15 @@ def index(req):
 
     # update values in the graph data csv 
     update_csv(rel_terms, values)
+
+    print(reverse_doc(rev_data, base_term, rel_terms[0], rel_terms[1]))
     
     # Context dict to send to page
     context = {
         "context": {
             "graph": graph_dict(values, name, base_term, rel_terms, labels),
             "trendForm": forms.TrendForm(),
-            "revData": reverse_doc(rev_data, base_term, rel_terms[1], rel_terms[2]),
+            "revData": reverse_doc(rev_data, base_term, rel_terms[0], rel_terms[1]),
             "revForm": forms.ReverseForm(),
         }
     }

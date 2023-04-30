@@ -23,13 +23,14 @@ def init():
     name = "nyt"
     base = "race"
     terms = ["state", "government", "news", "sports"]
-    docs = [
-        "In College Football, No Player Escapes the Eye of the Strength Coach Head coaches and players emphasize the importance of the strength coach, and salaries for the position at top college football programs are growing.",
-        "Where CPR on a Boy Is Time Wasted: U.S. Doctors Recall Aleppos Horrors Three American doctors provided a personal perspective on the deepening emergency in a Syrian city where local doctors have grown weary of the bloodshed.",
-        "Israels Benjamin Netanyahu, Still a Step Ahead of Scandals, Faces a New Inquiry The new attorney general says he will take a hard line, but Mr. Netanyahu has shown he can slip away from accusations with Teflon-coated ease.",
-        "Russias Acres, if Not Its Locals, Beckon Chinese Farmers With farmland in China scarce, migrants are crossing the border to lease large, unused tracts in the Far East, where many residents grumble about their presence and hard work.",
-        "Exaggerator Storms Down the Stretch to Win the Haskell Invitational On a sloppy track, Nyquist, the Kentucky Derby winner, faded to fourth in a field of six."
-    ]
+    
+    # docs = [
+    #     "In College Football, No Player Escapes the Eye of the Strength Coach Head coaches and players emphasize the importance of the strength coach, and salaries for the position at top college football programs are growing.",
+    #     "Where CPR on a Boy Is Time Wasted: U.S. Doctors Recall Aleppos Horrors Three American doctors provided a personal perspective on the deepening emergency in a Syrian city where local doctors have grown weary of the bloodshed.",
+    #     "Israels Benjamin Netanyahu, Still a Step Ahead of Scandals, Faces a New Inquiry The new attorney general says he will take a hard line, but Mr. Netanyahu has shown he can slip away from accusations with Teflon-coated ease.",
+    #     "Russias Acres, if Not Its Locals, Beckon Chinese Farmers With farmland in China scarce, migrants are crossing the border to lease large, unused tracts in the Far East, where many residents grumble about their presence and hard work.",
+    #     "Exaggerator Storms Down the Stretch to Win the Haskell Invitational On a sloppy track, Nyquist, the Kentucky Derby winner, faded to fourth in a field of six."
+    # ]
 
     docs = reverse_nyt(base, terms[0], terms[1])
 

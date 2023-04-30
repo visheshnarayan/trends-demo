@@ -33,8 +33,6 @@ def init():
 
     docs = reverse_nyt(base, terms[0], terms[1])
 
-    print(docs)
-
     return name, base, terms, docs
 
 # Create your views here.
@@ -47,8 +45,6 @@ def index(req):
 
     # update values in the graph data csv 
     update_csv(rel_terms, values)
-
-    print(reverse_doc(rev_data, base_term, rel_terms[0], rel_terms[1]))
     
     # Context dict to send to page
     context = {

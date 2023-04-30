@@ -1,40 +1,26 @@
 # imports
 import pandas as pd
 
-def reverse_healthcare(base, r1, r2, sub_model):
+def reverse_nyt(base, r1, r2, sub_model):
     '''
-    reverse_nyt: Reverse queries for documents with base, r1, and r2 for New York Times August 2020 dataset
-    return: a dictionary containing key:value pairs in the form of docID:[base_loc, r1_loc, r2_loc]
+    reverse_nyt: Reverse queries for documents with base, r1, and r2 for all text data in either NYT data or Healthcare data
+    return: a list containing all docs with base, r1, and r2
     
     Parameters:
     base: string (word)
     r1: string (word)
     r2: string (word)
+    sub_model: string (nyt or healthcare)
     '''
-    path=f"home/helper/trends/healthcare/data/{sub_model}.csv"
+    path = "home/helper/trends/healthcare/data/full.csv"
 
     # load in data
     # U+000A -> unicode for line break
     text=pd.read_csv(path, sep="U+000A", engine="python")
-    text.columns=['text']
 
-    #lower case for querying
-    text['text']=text['text'].str.lower()
+    # (?i) -> regex ignore capitalization
+    # check for base 
+    text=text[text["Headlines"].str.contains(f"(?i){base}")]
 
-    # assign ID value to each row
-    text['id']=text.index
-    
-    # locs dictionary
-    locs={}
-
-    # filtered dataframe containing only texts with all base, r1, and r2
-    text=text[text['text'].str.contains(base) & text['text'].str.contains(r1) & text['text'].str.contains(r2)]
-
-    # iteration over all texts to save location of words
-    for index, row in text.iterrows():
-        locs[text['id'][index]]=[
-            text['text'][index].index(base),
-            text['text'][index].index(r1),
-            text['text'][index].index(r2)
-        ]
-    return locs
+    # return list with texts containing r1 OR r2 with dropped duplicates
+    return text[text["Headlines"].str.contains(f"(?i){r1}|{r2}")].drop_duplicates()["Headlines"].to_list()

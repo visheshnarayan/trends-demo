@@ -1,7 +1,7 @@
 # imports
 import pandas as pd
 
-def reverse_nyt(base, r1, r2, sub_model):
+def reverse_nyt(base, r1, r2):
     '''
     reverse_nyt: Reverse queries for documents with base, r1, and r2 for all text data in either NYT data or Healthcare data
     return: a list containing all docs with base, r1, and r2
@@ -10,7 +10,6 @@ def reverse_nyt(base, r1, r2, sub_model):
     base: string (word)
     r1: string (word)
     r2: string (word)
-    sub_model: string (nyt or healthcare)
     '''
     path = "home/helper/trends/nyt/data/full.csv"
 

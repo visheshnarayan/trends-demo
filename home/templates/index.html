@@ -237,7 +237,8 @@
 				// takes data and visualizes with JSON
 				var graph_context = JSON.parse("{{ context.graph | safe }}".replace(/'/g, '"'));
 				visualize();
-				var reverse_context = JSON.parse("{{ context.revData | safe }}".replace(/'/g, '"'))
+				// var reverse_context = JSON.parse("{{ context.revData | safe }}".replace(/'/g, '"'))
+				var reverse_context = $.parseJSON("{{ context.revData | safe }}".replace(/'/g, '"'))
 				update_carousel();
 
 			</script>

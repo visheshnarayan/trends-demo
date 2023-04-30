@@ -11,6 +11,31 @@ BASE_DIR = "./home/helper/trends/nyt/"
 # labels
 labels = ["jan20", "aug20", "dec20", "jan21", "aug21", "dec21"]
 
+def create_common_words():
+    # loading models
+    models = []
+    for label in labels:
+        models.append(Word2Vec.load(BASE_DIR + f"models/{label}.model"))
+
+    # creating list of lists of all terms in each model
+    terms = []
+    for model in models:
+        terms.append(model.wv.index_to_key)
+
+    # creating dict to save to json gor common words for all labels
+    words_data = {}
+
+    print(len(terms), terms)
+
+    for idx, label in enumerate(labels):
+        words_data[label] = terms[idx]
+
+    words_data["common"] = common_terms(terms)
+
+    # saving words data
+    with open(BASE_DIR + 'words.json', 'w') as fp:
+        json.dump(words_data, fp, indent=4)
+
 def create_nyt():
     print(os.getcwd())
     jan20 = pd.read_csv(BASE_DIR + "data/jan1.csv", encoding = "utf-8", engine='python')
@@ -87,27 +112,5 @@ def create_nyt():
     with open(BASE_DIR + 'words.json', 'w') as fp:
         json.dump(data, fp, indent=4)
 
-def create_common_words():
-    # loading models
-    models = []
-    for label in labels:
-        models.append(Word2Vec.load(BASE_DIR + f"models/{label}.model"))
-
-    # creating list of lists of all terms in each model
-    terms = []
-    for model in models:
-        terms.append(model.wv.index_to_key)
-
-    # creating dict to save to json gor common words for all labels
-    words_data = {}
-
-    print(len(terms), terms)
-
-    for idx, label in enumerate(labels):
-        words_data[label] = terms[idx]
-
-    words_data["common"] = common_terms(terms)
-
-    # saving words data
-    with open(BASE_DIR + 'words.json', 'w') as fp:
-        json.dump(words_data, fp, indent=4)
+    # adding common terms to words.json to update autofill dropdown
+    create_common_words()

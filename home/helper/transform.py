@@ -66,9 +66,16 @@ def reverse_doc(strs, base, rel1, rel2):
         
         pos = [pos_base, pos_r1, pos_r2]
         
-        docs.append((doc, pos))
+        docs.append([doc, pos])
     
-    return docs
+    rev = {
+        "base": base,
+        "rel1": rel1,
+        "rel2": rel2,
+        "docs": docs,
+    }
+
+    return rev
 
 def common_terms(mat):
     return list(reduce(lambda i, j: i & j, (set(x) for x in mat)))

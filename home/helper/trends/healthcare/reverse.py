@@ -16,10 +16,11 @@ def reverse_healthcare(base, r1, r2):
 
     # load in data
     # U+000A -> unicode for line break
-    text=pd.read_csv(path, sep="U+000A", engine="python")
+    # text=pd.read_csv(path, sep="U+000A", engine="python")
+    text=pd.read_csv(path=path)
 
     # clean
-    text["clean"]=text["Headlines"].apply(lambda text: text.lower())
+    text["clean"]=text["inspection_text"].apply(lambda text: text.lower())
     text["clean"]=text["clean"].apply(lambda text: re.sub(r"(@\[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)|^rt|http.+?", "", text))
 
     # tokenize

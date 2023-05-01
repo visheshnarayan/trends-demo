@@ -68,7 +68,13 @@ def reverse_doc(strs, base, rel1, rel2):
         pos = [pos_base, pos_r1, pos_r2]
         
         docs.append([doc, pos])
+
+    # lamda function to sort according to positions
+    zero_floor = lambda x: 0 if x > 0 else x
+    sort_key = lambda x: (zero_floor(x[1][0]), zero_floor(x[1][1]), zero_floor(x[1][2]))
     
+    docs.sort(key=sort_key, reverse=True)
+
     rev = {
         "base": base,
         "rel1": rel1,

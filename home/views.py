@@ -124,8 +124,9 @@ def reverse(req):
                 #   rel1:  cleaning
                 rev_data = reverse_healthcare(base_term, rel_terms[0], rel_terms[1])
 
-            print(rev_data)
-            print(reverse_doc(rev_data))
+            # print(base_term, rel_terms[0], rel_terms[1])
+            # print(rev_data)
+            # print(reverse_doc(rev_data))
 
             return JsonResponse({
                 "status":"success",

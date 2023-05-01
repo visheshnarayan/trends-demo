@@ -19,12 +19,10 @@ $(document).ready(
             // update graph
             visualize() 
         }
-        });
-    })
-  );
+    });
+}));
 
 // TODO : make graph responsive
-
 function regraph() {
     visualize()
 }

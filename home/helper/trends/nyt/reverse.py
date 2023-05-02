@@ -16,10 +16,10 @@ def reverse_nyt(base, r1, r2):
 
     # load in data
     # text=pd.read_csv(path)
-    text=pd.read_csv(path=path)
+    text=pd.read_csv(path)
 
     # clean
-    text["clean"]=text["inspection_text"].apply(lambda text: text.lower())
+    text["clean"]=text["Headlines"].apply(lambda text: text.lower())
     text["clean"]=text["clean"].apply(lambda text: re.sub(r"(@\[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)|^rt|http.+?", "", text))
 
     # tokenize

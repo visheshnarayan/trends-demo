@@ -22,7 +22,7 @@ function update_carousel(){
          */
         const div = $("<div></div>", {"class": "content"})
         const header = $("<h3>Title</h3>")
-        const p = $(`<p>${text}</p>`)
+        const p = $(`<p>${text[0]}</p>`)
     
         /**
          * append all nodes

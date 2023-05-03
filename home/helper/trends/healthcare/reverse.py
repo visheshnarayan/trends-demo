@@ -19,7 +19,20 @@ def reverse_healthcare(base, r1, r2):
     text=pd.read_csv(path)
 
     # clean
-    # TODO: fix the way to access text for healthcare
+    def clean(df):
+        '''
+        cleaning procedure for healthcare text data 
+        '''
+        df=df[["inspection_text"]]
+        df["inspection_text"]=df["inspection_text"].apply(lambda text: text.replace("**NOTE- TERMS IN BRACKETS HAVE BEEN EDITED TO PROTECT CONFIDENTIALITY** ", ""))
+        df["inspection_text"]=df["inspection_text"].apply(lambda text: text.replace("<BR/>", ""))
+        df["inspection_text"]=df["inspection_text"].apply(lambda text: text.replace(">", ""))
+        return df
+    
+    # cleaned df
+    text=clean(text)
+
+    # lower and remove punctuation
     text["clean"]=text["inspection_text"].apply(lambda text: text.lower())
     text["clean"]=text["clean"].apply(lambda text: re.sub(r"(@\[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)|^rt|http.+?", "", text))
 

@@ -72,6 +72,16 @@
 	list-style-type: none;
 }
 
+.slider .slide .content .highlightBase {
+	background-color: yellow;
+	font-weight: bold;
+}
+
+.slider .slide .content .highlightRel {
+	background-color: aqua;
+	font-weight: bold;
+}
+
 .slider .slide[data-active] {
 	opacity: 1;
 }

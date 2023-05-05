@@ -22,7 +22,11 @@ function update_carousel(){
          */
         const div = $("<div></div>", {"class": "content"})
         const header = $("<h3>Title</h3>")
-        const p = $(`<p>${text[0]}</p>`)
+        const p = $(`<p>${highlight(text[0], text[1])}</p>`)
+        // const p = $(`<p>${text[0]}</p>`)
+        highlight(text[0], text[1]);
+        // TODO: highlighting base, r1, r2
+        // highlight(p, texts.indexOf(text));
     
         /**
          * append all nodes
@@ -69,4 +73,28 @@ function update_carousel(){
             delete activeSlide.dataset.active;
         })
     });
+
+    /**
+     * highlight: highlights given text
+     * if base: highlight yellow
+     * if not: highlight blue
+     * @param {String} text 
+     * @param {Integer[]} locs 
+     */
+    function highlight(text, locs) {
+        var tokens_list = text.split(" ");
+        for (let i = 0; i < locs.length; i++) {
+            if (i==0) {
+                tokens_list[locs[i]] = `<span class=\"highlightBase\">${tokens_list[locs[i]]}</span>`;
+                // tokens_list[locs[i]] = `<span style=\"font-weight:bold\">${tokens_list[locs[i]]}</span>`;
+            } else {
+                if (locs[i]!=-1) {
+                    tokens_list[locs[i]] = `<span class=\"highlightRel\">${tokens_list[locs[i]]}</span>`;
+                    // tokens_list[locs[i]] = `<span style=\"font-weight:bold\">${tokens_list[locs[i]]}</span>`;
+                }
+            }    
+        }
+        // console.warn(tokens_list.join(" "));
+        return tokens_list.join(" ");
+    }
 };

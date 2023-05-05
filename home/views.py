@@ -59,11 +59,11 @@ def index(req):
 
     return render(req, 'index.html', context)
 
-def generic(req):
-    return render(req, 'generic.html')
+def method(req):
+    return render(req, 'method.html')
 
-def elements(req):
-    return render(req, 'elements.html')
+def about(req):
+    return render(req, 'about-us.html')
 
 def graph_update(req):
     # if request method is POST

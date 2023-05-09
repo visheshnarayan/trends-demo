@@ -22,7 +22,7 @@ $(document).ready(
     });
 }));
 
-// TODO : make graph responsive
+// TODO: see why this is not working
 function regraph() {
     visualize()
 }

@@ -27,10 +27,6 @@
 		<script type="text/javascript" src="{% static 'assets/js/reverse.js' %}"></script>
 	</head>
 
-	<!-- TODO : Make Dark (Background = #181a1b) (Text = #cecac3) -->
-	<!-- TODO : show base term and model type -->
-	<!-- TODO : shift THESE ARE TRENDS a litle above -->
-
 	</script>
 
 	<body class="is-preload">
@@ -92,7 +88,7 @@
 
 				<!-- GRAPH -->
 				<h3>Trend Visualizer</h3>
-				<!-- TODO : add base term and relative terms to the graph -->
+				<!-- TODO : add Model Type, base term and relative terms to the graph legend -->
 				<div id="my_dataviz" style="border: 5px solid #eeeeee; padding: 10px; margin-left: 4%; margin-right: 4%; border-radius: 25px;"></div>
 				
 				<!-- GRAPH FORM -->
@@ -138,9 +134,8 @@
 				<!-- Reverse Search Form -->
 				<article class="post featured">
 					<h3>Reverse Search Terms in Documents</h3>
-					<!-- TODO : add text-file-showing logic below -->
 					<!-- <article> -->
-					<!-- TODO : add base term and relative terms to the carousel -->
+					<!-- TODO : show Model Type, Base Term to the carousel -->
 					<div class="slider">
 						<div class="carousel" data-carousel>
 							<section aria-label="Reverse Queried Documents">
@@ -157,7 +152,6 @@
 					<form id="reverse-form" class="form" method="post" autocomplete="off">
 						{% csrf_token %}
 
-						<!-- TODO : figure out why column and item css fails occasionally -->
 						<div class="column">
 							<div class="item">
 								{{ context.trendForm.model_type.label_tag }}
@@ -181,14 +175,13 @@
 						</div>
 						
 						<br></br> 
-						<!-- TODO : add logic to fill this -->
+						<!-- TODO : add logic to fill this with the most similar terms automatically -->
 						<input id="revFormFill" type="button" value="Fill Most Similar Terms">
 
 						<!-- FORM SUBMIT BUTTON -->
 						<input id="revFormSubmit" type="submit" value="Search">
 					</form>
 
-					<!-- TODO fix text styling::text shows but not in slides format; shows as normal list -->
 					<!-- context | safe is the data itself -->
 					<!-- {{ context | safe }} -->
 				</article>
@@ -215,6 +208,7 @@
 				</article>
 
 				<!-- Footer -->
+				<!-- TODO: Make it responsive -->
 				<footer>
 					<div class="pagination">
 						<a href="#" class="pagination">Trends Demo</a>

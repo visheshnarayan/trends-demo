@@ -50,7 +50,6 @@ def graph_dict(values, name, base, terms, labels):
     }
 
 def reverse_doc(strs, base, rel1, rel2):
-    # TODO: docs to be sorted according to number of terms present
     docs = []
     
     for doc in strs:

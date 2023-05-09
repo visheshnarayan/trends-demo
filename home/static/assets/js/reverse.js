@@ -1,6 +1,5 @@
-/**
- * TASK: unpack new datatype 
- */
+// FIXME : carousel stacks every time it is reloaded (clear previous information when reloading)
+
 function update_carousel(){
     console.log("inside carousel function");
     console.warn(reverse_context);
@@ -25,7 +24,7 @@ function update_carousel(){
         const p = $(`<p>${highlight(text[0], text[1])}</p>`)
         // const p = $(`<p>${text[0]}</p>`)
         highlight(text[0], text[1]);
-        // TODO: highlighting base, r1, r2
+        
         // highlight(p, texts.indexOf(text));
     
         /**

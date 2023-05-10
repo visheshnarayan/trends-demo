@@ -1,12 +1,11 @@
-/**
- * TASK: unpack new datatype 
- */
-function update_carousel(){
+function update_carousel() {
+    // clear carousel before updating
+    clear_carousel();
+
     console.log("inside carousel function");
     console.warn(reverse_context);
 
-    // reverse_context["docs"] -> text data
-    // will be changed to access text inside new data structure
+    // reverse_context["docs"] -> [text, locs]
     const texts = reverse_context['docs'];
     texts.forEach(text => {
         /**
@@ -89,5 +88,12 @@ function update_carousel(){
             }    
         }
         return tokens_list.join(" ");
+    }
+
+    function clear_carousel() {
+        const carousel = document.getElementById("foo");
+        while (carousel.firstChild) {
+            carousel.removeChild(carousel.lastChild);
+        }
     }
 };

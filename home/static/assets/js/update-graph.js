@@ -23,8 +23,9 @@ $(document).ready(
 }));
 
 // TODO: see why this is not working
-function regraph() {
-    visualize()
-}
+$(window).resize(regraph);
 
-window.onresize = regraph;
+function regraph() {
+    console.warn("regraph!!");
+    visualize();
+}

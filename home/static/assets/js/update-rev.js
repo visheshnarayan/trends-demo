@@ -37,6 +37,7 @@ $(document).ready(
 
 // TODO : make Carousel responsive
 function reCarousel() {
+    console.warn("reCarousel 2!!");
     update_carousel()
 }
 

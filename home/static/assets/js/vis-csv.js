@@ -68,6 +68,7 @@ function visualize(){
             .attr("x", width - 100)
             .attr("text-anchor", "end")
             .attr("stroke", "black")
+            // FIXME : Year does not show properly 
             .text("Year");
 
         // console.warn("..2");

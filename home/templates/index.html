@@ -236,7 +236,6 @@
 				var reverse_context = JSON.parse("{{ context.revData | safe }}".replace(/'/g, '"'))
 				// var reverse_context = $.parseJSON("{{ context.revData | safe }}".replace(/'/g, '"'))
 				update_carousel();
-
 			</script>
 
 			<!-- page javascript -->
@@ -252,6 +251,9 @@
 
 			<script type="text/javascript" src="{% static 'assets/js/update-graph.js' %}"></script>
 			<script type="text/javascript" src="{% static 'assets/js/update-rev.js' %}"></script>
+			<script type="text/javascript" src="{% static 'assets/js/similar.js' %}">
+				// var graph_src = "{%  static 'csv/graph-data.csv' %}";
+			</script>
 		</div>
 	</body>
 </html>

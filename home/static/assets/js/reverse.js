@@ -1,11 +1,11 @@
-// FIXME : carousel stacks every time it is reloaded (clear previous information when reloading)
+function update_carousel() {
+    // clear carousel before updating
+    clear_carousel();
 
-function update_carousel(){
     console.log("inside carousel function");
     console.warn(reverse_context);
 
-    // reverse_context["docs"] -> text data
-    // will be changed to access text inside new data structure
+    // reverse_context["docs"] -> [text, locs]
     const texts = reverse_context['docs'];
     texts.forEach(text => {
         /**
@@ -22,10 +22,6 @@ function update_carousel(){
         const div = $("<div></div>", {"class": "content"})
         const header = $("<h3>Title</h3>")
         const p = $(`<p>${highlight(text[0], text[1])}</p>`)
-        // const p = $(`<p>${text[0]}</p>`)
-        highlight(text[0], text[1]);
-        
-        // highlight(p, texts.indexOf(text));
     
         /**
          * append all nodes
@@ -85,15 +81,19 @@ function update_carousel(){
         for (let i = 0; i < locs.length; i++) {
             if (i==0) {
                 tokens_list[locs[i]] = `<span class=\"highlightBase\">${tokens_list[locs[i]]}</span>`;
-                // tokens_list[locs[i]] = `<span style=\"font-weight:bold\">${tokens_list[locs[i]]}</span>`;
             } else {
                 if (locs[i]!=-1) {
                     tokens_list[locs[i]] = `<span class=\"highlightRel\">${tokens_list[locs[i]]}</span>`;
-                    // tokens_list[locs[i]] = `<span style=\"font-weight:bold\">${tokens_list[locs[i]]}</span>`;
                 }
             }    
         }
-        // console.warn(tokens_list.join(" "));
         return tokens_list.join(" ");
+    }
+
+    function clear_carousel() {
+        const carousel = document.getElementById("foo");
+        while (carousel.firstChild) {
+            carousel.removeChild(carousel.lastChild);
+        }
     }
 };

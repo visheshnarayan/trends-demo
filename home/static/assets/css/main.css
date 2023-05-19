@@ -57,7 +57,7 @@
 	grid-row: 1;
 	position: relative;
 	inset: 0;
-	opacity: 0;
+	/* opacity: 0; */
 }
 
 .slider .slide > div {
@@ -82,9 +82,9 @@
 	font-weight: bold;
 }
 
-.slider .slide[data-active] {
+/* .slider .slide[data-active] {
 	opacity: 1;
-}
+} */
 
 /* ================================================================= */
 
@@ -3396,7 +3396,7 @@ input, select, textarea {
 
 	#intro {
 		color: #ffffff;
-		padding: 8rem 4rem 6rem 4rem ;
+		padding: 8rem 4rem 6rem 4rem;
 		-moz-align-items: center;
 		-webkit-align-items: center;
 		-ms-align-items: center;

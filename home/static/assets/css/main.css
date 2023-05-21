@@ -57,7 +57,6 @@
 	grid-row: 1;
 	position: relative;
 	inset: 0;
-	/* opacity: 0; */
 }
 
 .slider .slide > div {
@@ -81,10 +80,6 @@
 	background-color: aqua;
 	font-weight: bold;
 }
-
-/* .slider .slide[data-active] {
-	opacity: 1;
-} */
 
 /* ================================================================= */
 
@@ -3397,6 +3392,7 @@ input, select, textarea {
 	#intro {
 		color: #ffffff;
 		padding: 8rem 4rem 6rem 4rem;
+		/* padding: 2rem 4rem 6rem 4rem; */
 		-moz-align-items: center;
 		-webkit-align-items: center;
 		-ms-align-items: center;
@@ -3412,7 +3408,7 @@ input, select, textarea {
 		-moz-justify-content: -moz-flex-end;
 		-webkit-justify-content: -webkit-flex-end;
 		-ms-justify-content: -ms-flex-end;
-		justify-content: flex-end;
+		justify-content: flex-start;
 		-moz-transition: opacity 1s ease, -moz-transform 1s ease;
 		-webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
 		-ms-transition: opacity 1s ease, -ms-transform 1s ease;
@@ -3421,7 +3417,7 @@ input, select, textarea {
 		cursor: default;
 		text-align: center;
 		z-index: 1;
-		min-height: 100vh;
+		/* min-height: 100vh; */
 	}
 
 		#intro input, #intro select, #intro textarea {

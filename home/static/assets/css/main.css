@@ -3226,8 +3226,6 @@ input, select, textarea {
 			-ms-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
 			transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
 			border: solid 2px;
-			/* display: inline-block; */
-			/* display: flex; */
 			font-family: "Source Sans Pro", Helvetica, sans-serif;
 			font-size: 0.8rem;
 			font-weight: 900;
@@ -3235,14 +3233,10 @@ input, select, textarea {
 			letter-spacing: 0.075em;
 			line-height: calc(3rem - 4px);
 			margin-left: -2px;
-			/* min-width: 3rem; */
-			/* width: 100%; */
 			position: relative;
 			text-align: center;
 			text-decoration: none;
 			text-transform: uppercase;
-			/* padding-left: 10%;
-			padding-right: 10%; */
 			padding-left: 10%;
 			padding-right: 10%;
 		}

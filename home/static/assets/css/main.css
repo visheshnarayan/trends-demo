@@ -3414,7 +3414,9 @@ input, select, textarea {
 		cursor: default;
 		text-align: center;
 		z-index: 1;
-		/* min-height: 100vh; */
+		/* min-height has to be greater >= 80vh  */
+		min-height: 80vh;
+		padding-top: 25vh;
 	}
 
 		#intro input, #intro select, #intro textarea {

@@ -2,7 +2,6 @@
 
 function update_carousel(){
     console.log("inside carousel function");
-    console.warn(reverse_context);
 
     // reverse_context["docs"] -> text data
     // will be changed to access text inside new data structure

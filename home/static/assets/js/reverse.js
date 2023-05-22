@@ -1,3 +1,6 @@
+/**
+ * update_carousel() -> updates text carousel for reverse query
+ */
 function update_carousel() {
     // buttons and texts
     const prevButton = $("#prevButton")[0];

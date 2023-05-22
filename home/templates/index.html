@@ -37,11 +37,13 @@
 			<!-- Intro -->
 			<div id="intro">
 				<!-- TODO : vertical and horizontally center this -->
-				<h1>These are<br />
-				Trends</h1>
+				<h1>Temporal Trends Analyses</h1>
+				<h1><span style="font-size: smaller;">w</span>/Word Embeddings</h1>
 
-				<!-- <p>lorem<br />
-				ipsum</p> -->
+				<br>
+				<p>Comparative Exploration and Visualization<br>
+					of Evolving Word Embeddings in News Corpuses
+				</p>
 
 				<ul class="actions">
 					<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
@@ -140,11 +142,13 @@
 						<div class="carousel" data-carousel>
 							<section aria-label="Reverse Queried Documents">
 								<ul data-slides class="slides" id="slides">
-										<li class="slide" id="first-slide" data-active></li>
+									<li class="slide">
+										<div class="content" id="slideContent"></div>
+									</li>
 								</ul>
 							</section>
-							<button class="carousel-button prev" data-carousel-button="prev">&#8249;</button>
-							<button class="carousel-button next" data-carousel-button="next">&#8250;</button>
+							<button id="prevButton" class="carousel-button prev" data-carousel-button="prev">&#8249;</button>
+							<button id="nextButton" class="carousel-button next" data-carousel-button="next">&#8250;</button>
 						</div>
 					</div>
 
@@ -207,6 +211,39 @@
 					</p>
 				</article>
 
+				<!-- <span style="font-family:'Courier New', Courier, monospace; font-weight: bolder; text-decoration-line: initial; background-color:yellow;"></span> -->
+				<!-- <span style="font-family:'Courier New', Courier, monospace; font-weight: bolder; text-decoration-line:initial; background-color:aquamarine;"></span> -->
+
+				<article class="post featured">
+					<h2 class="paper" style="text-align: center">How to Use the Reverse Query Feature</h2>
+					<br>
+					
+					<h4 style="text-align: left; text-decoration: underline;">1. Selecting a dataset</h4>
+					<p>
+						The Reverse Query functionality facilitates in-depth analysis of a textual dataset by enabling users to extract specific texts in which words co-occur, thereby facilitating an exploration of the influence of word associations on temporal word embeddings. This feature offers the flexibility to select a dataset that was utilized within the research study: the <span style="font-family:'Courier New', Courier, monospace; font-weight: bolder; text-decoration-line: initial; background-color:yellow;">New York Times</span> corpus or the <span style="font-family:'Courier New', Courier, monospace; font-weight: bolder; text-decoration-line:initial; background-color:aquamarine;">20 Newsgroup</span> corpus. These datasets encompass all texts used in word embedding training, allowing for exhaustive analyses and the discovery of profound insights based on word co-occurrence patterns.
+					</p>
+					<br>
+					
+					<h4 style="text-align: left; text-decoration: underline;">2. Selecting a Base Term</h4>
+					<p>
+						To initiate a reverse query on documents, the user must designate a base term. The base term serves as a crucial anchor, establishing a reference point against which the presence of other associated terms in documents is evaluated. Essentially, all queried documents will feature the designated base term, along with one or more associated terms that coincide with the base term. To illustrate, suppose the base term selected is <span style="background-color:yellow; font-weight: bolder; font-family:'Courier New', Courier, monospace;">"Unofficial"</span> and the relative terms under consideration are <span style="background-color: aquamarine; font-weight: bolder; font-family:'Courier New', Courier, monospace;">"CDC".</span> and <span style="background-color: aquamarine; font-weight: bolder; font-family:'Courier New', Courier, monospace;">"Healthcare"</span>. The outcome will comprise the discovered documents in which the base term is observed in conjunction with the associated terms. This result highlights the successful retrieval of texts where the base term and relative terms co-occur, allowing users to analyze the contextual relationships and impacts of word association on word embeddings. <span style="font-style: italic; font-weight: bold; text-decoration-line: underline;">It is important to note</span> that not all relative terms may necessarily appear within a single document.
+					</p>
+					<br>
+					
+					<h4 style="text-align: left; text-decoration: underline;">3. Selecting Relative Terms</h4>
+					<p>
+						The related terms encompass the lexemes that are queried in conjunction with the designated base term. The primary objective is to identify documents where the base term co-occurs with the desired associated terms. To effectively harness the potential of the Reverse Query feature, users should only choose lexemes from the provided drop-down menu. It is essential to acknowledge that any words not present within the corpus (i.e., absent from the drop-down menu) will not yield valid results. <span style="font-style: italic; font-weight: bold; text-decoration-line: underline;">It is important to note</span> that while not all relative terms will consistently accompany a base term, each queried text will invariably contain at least one associated term in conjunction with the base term.
+					</p>
+					<br>
+
+					<h4 style="text-align: left; text-decoration: underline;">Alternate Method</h4>
+					<p>
+						The Reverse Query functionality seamlessly integrates with the Trends Visualizer, enabling simultaneous utilization of both features. Users can initiate the process by searching and visualizing cosine similarities between specifically chosen base and associated terms. The Reverse Query feature then automatically populates the selected words from the Trends Visualizer into the query through clicking "Find Most Similar Terms", retrieving documents where the base and associated terms coexist. This streamlined workflow empowers users to explore the contextual interplay of the designated terms and extract meaningful insights from the retrieved documents.
+					</p>
+					<br>
+
+				</article>
+				
 				<!-- Footer -->
 				<!-- TODO: Make it responsive -->
 				<footer>

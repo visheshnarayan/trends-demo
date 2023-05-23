@@ -49,6 +49,7 @@ def graph_dict(values, name, base, terms, labels):
         "period_labels": labels,
     }
 
+# def sor_doc(strs, base, rel1, rel2):
 def reverse_doc(strs, base, rel1, rel2):
     docs = []
     
@@ -73,6 +74,13 @@ def reverse_doc(strs, base, rel1, rel2):
     sort_key = lambda x: (zero_floor(x[1][0]), zero_floor(x[1][1]), zero_floor(x[1][2]))
     
     docs.sort(key=sort_key, reverse=True)
+
+#     return docs
+
+# def reverse_doc(strs, base, rel1, rel2):
+#     docs = sort_doc(strs, base, rel1, rel2)
+
+#     print(docs)
 
     rev = {
         "base": base,

@@ -76,9 +76,6 @@
 						<span class="date" id="date">February 15, 2023</span>
 						<h2><a>Trend Exploration in Language Through News Data</a></h2>
 					</header>
-					
-					<!-- <a href="#" class="image main"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a> -->
-					<!-- <svg id="myPlot" style="width:500px;height:500px"></svg> -->
 
 					<!-- Create a div where the graph will take place -->
 					<header class="major">
@@ -88,8 +85,17 @@
 					
 				</article>
 
+				<!-- GRAPH LEGEND -->
 				<!-- GRAPH -->
 				<h3>Trend Visualizer</h3>
+				<div style="border: 2px solid black; border-radius: 10px; padding: 0rem 0rem 0rem 0rem; margin: 0rem 3rem 0.2rem 3rem;">
+					<!-- {{ context.graph | safe }} -->
+					<br>
+					{{ context.graph.name | safe }}
+					{{ context.graph.base_term | safe }}
+					{{ context.graph.rel_terms | safe }}
+				</div>
+				
 				<!-- TODO : add Model Type, base term and relative terms to the graph legend -->
 				<div id="my_dataviz" style="border: 5px solid #eeeeee; padding: 10px; margin-left: 4%; margin-right: 4%; border-radius: 25px;"></div>
 				
@@ -136,6 +142,17 @@
 				<!-- Reverse Search Form -->
 				<article class="post featured">
 					<h3>Reverse Search Terms in Documents</h3>
+
+					<h3>Trend Visualizer</h3>
+					<div style="border: 2px solid black; border-radius: 10px; padding: 0rem 0rem 0rem 0rem; margin: 0rem 3rem 0.2rem 3rem;">
+						<!-- {{ context.graph | safe }} -->
+						<br>
+						{{ context.graph.name | safe }}
+						{{ context.graph.base_term | safe }}
+						{{ context.graph.rel_terms | safe }}
+					</div>
+
+
 					<!-- <article> -->
 					<!-- TODO : show Model Type, Base Term to the carousel -->
 					<div class="slider">
@@ -179,7 +196,6 @@
 						</div>
 						
 						<br></br> 
-						<!-- TODO : add logic to fill this with the most similar terms automatically -->
 						<input id="revFormFill" type="button" value="Fill Most Similar Terms">
 
 						<!-- FORM SUBMIT BUTTON -->

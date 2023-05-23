@@ -31,8 +31,8 @@ def reverse_nyt(base, r1, r2):
             if r1.lower() in tokens or r2.lower() in tokens:
                 return 1
         return 0
+    
     text["valid"]=text["tokens"].apply(lambda tokens: filter(tokens))
-
 
     # list of strings containing base with r1 or r2 that passed filter function with return of 1
     # drop(axis=1, labels=["tokens"]) because drop_duplicates() does not work with hashables in dataframe column
@@ -43,3 +43,26 @@ def reverse_nyt(base, r1, r2):
 
     # return finalized list of strings
     return list(map(single, text))
+
+    # finalized list of strings
+    # docs = list(map(single, text))
+
+    # # getting time data of each string
+    # timestamps = []
+
+    # for doc in docs:
+    #     # TODO : loop through all subsets to find month and year
+    #     sets = ["aug1.csv", "aug2.csv", "dec1.csv", "dec2.csv", "jan1.csv", "jan2.csv"]
+    #     base_path = "home/helper/trends/nyt/data/"
+
+    #     for dataset in sets:
+    #         sub_path = base_path + dataset
+
+    #         # load in data
+    #         sub_text = pd.read_csv(sub_path)
+
+    #         # TODO : get dataset name where doc is present
+
+    #         # timestamps.append()
+
+    # return docs, timestamps

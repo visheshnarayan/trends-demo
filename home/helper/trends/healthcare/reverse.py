@@ -19,11 +19,16 @@ def reverse_healthcare(base, r1, r2):
     text=pd.read_csv(path)
 
     # clean
+    # TODO: fix value onto slice error -> query for data differently 
+    # https://www.analyticsvidhya.com/blog/2021/11/3-ways-to-deal-with-settingwithcopywarning-in-pandas/
     def clean(df):
         '''
         cleaning procedure for healthcare text data 
         '''
-        df=df[["inspection_text"]]
+        # added .copy() to avoid SettingWithCopyWarning
+        df=df[["inspection_text"]].copy()
+
+        # replace texts
         df["inspection_text"]=df["inspection_text"].apply(lambda text: text.replace("**NOTE- TERMS IN BRACKETS HAVE BEEN EDITED TO PROTECT CONFIDENTIALITY** ", ""))
         df["inspection_text"]=df["inspection_text"].apply(lambda text: text.replace("<BR/>", ""))
         df["inspection_text"]=df["inspection_text"].apply(lambda text: text.replace(">", ""))

@@ -18,14 +18,13 @@ def reverse_healthcare(base, r1, r2):
     # text=pd.read_csv(path)
     text=pd.read_csv(path)
 
-    # clean
-    # TODO: fix value onto slice error -> query for data differently 
-    # https://www.analyticsvidhya.com/blog/2021/11/3-ways-to-deal-with-settingwithcopywarning-in-pandas/
+    # clean 
     def clean(df):
         '''
         cleaning procedure for healthcare text data 
         '''
         # added .copy() to avoid SettingWithCopyWarning
+        # https://www.analyticsvidhya.com/blog/2021/11/3-ways-to-deal-with-settingwithcopywarning-in-pandas/
         df=df[["inspection_text"]].copy()
 
         # replace texts
@@ -33,7 +32,7 @@ def reverse_healthcare(base, r1, r2):
         df["inspection_text"]=df["inspection_text"].apply(lambda text: text.replace("<BR/>", ""))
         df["inspection_text"]=df["inspection_text"].apply(lambda text: text.replace(">", ""))
         return df
-    
+
     # cleaned df
     text=clean(text)
 

@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # INCASE "port is already in use" -> sudo lsof -t -i tcp:8000 | xargs kill -9
 
+# TO RUN THROUGH DOCKER
+# docker run --publish 8000:8000 angadsinghsandhu/trends
+
 """Django's command-line utility for administrative tasks."""
 import os
 import sys

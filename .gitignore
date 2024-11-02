@@ -12,6 +12,6 @@ __pycache__/
 home/helper/trends/**/data/
 home/helper/trends/**/models/
 
-# data
-*.csv
-*.model
+# # data
+# *.csv
+# *.model

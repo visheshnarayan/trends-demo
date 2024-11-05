@@ -5,7 +5,7 @@ This script contains functions to clean and preprocess the nursing home inspecti
 """
 
 # sample useage
-# python clean.py data/01_24_modified_data_clip.csv -o data
+# python clean.py data/legacy/01_24_modified_data_clip.csv -o data
 
 import pandas as pd
 import os
@@ -21,6 +21,13 @@ def get_args():
     )
 
     return parser.parse_args()
+
+def clean(df: pd.DataFrame) -> pd.DataFrame:
+    df["inspection_text"] = df["inspection_text"].apply(lambda s: s.replace("NOTE- TERMS IN BRACKETS HAVE BEEN EDITED TO PROTECT CONFIDENTIALITY", ""))
+    df["inspection_text"] = df["inspection_text"].apply(lambda s: s.replace("**** ", ""))
+    df["inspection_text"] = df["inspection_text"].str.replace(r'^\d{5}', '', regex=True)
+    df["inspection_text"] = df["inspection_text"].apply(lambda s: s.replace("<BR/>", ""))
+    return df
 
 def split_csv_by_month_year(input_file, output_folder="output_files"):
     """
@@ -39,6 +46,9 @@ def split_csv_by_month_year(input_file, output_folder="output_files"):
 
     # Convert 'inspection_date' to datetime format for easy grouping by month and year
     df['inspection_date'] = pd.to_datetime(df['inspection_date'], format='%m/%d/%Y')
+
+    # clean data
+    df = clean(df)
 
     # Group by year and month, then save each group as a separate CSV
     for (year, month), group in df.groupby([df['inspection_date'].dt.year, df['inspection_date'].dt.month]):

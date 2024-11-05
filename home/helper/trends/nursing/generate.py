@@ -7,17 +7,68 @@ a different time period (e.g., 'jan23') and is dynamically loaded from the 'mode
 
 The trends are derived based on cosine similarity scores, providing insights into how related terms
 vary in relation to the base term across different time periods.
+
+Optimizations:
+
+- Processes models in parallel using multiprocessing to improve speed.
+- Utilizes Gensim's built-in `similarity` method for efficient computation.
+- Checks for word existence in the vocabulary before attempting similarity computation.
+- Manages memory usage by controlling the number of worker processes.
+
 """
 
-# imports
-from gensim.models import Word2Vec
-from scipy.spatial import distance
+# Imports
 import os
+from typing import List, Tuple, Dict
+from gensim.models import Word2Vec
+from multiprocessing import Pool, cpu_count
 
 BASE_DIR = "./home/helper/trends/nursing/"
 MODELS_DIR = os.path.join(BASE_DIR, "models/")
 
-def gen_nursing_trends(base_term, rel_terms):
+# Define a dictionary to map month abbreviations to numbers for sorting
+MONTHS = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12
+}
+
+def process_model(args) -> Tuple[str, Dict[str, float]]:
+    """
+    Processes a single model file to compute similarity scores between the base term
+    and related terms.
+
+    Parameters:
+    - args (Tuple): A tuple containing:
+        - model_file (str): The filename of the model to process.
+        - base_term (str): The base word to calculate similarity against.
+        - rel_terms (List[str]): A list of related terms.
+
+    Returns:
+    - model_label (str): The label derived from the model filename.
+    - scores (Dict[str, float]): A dictionary of similarity scores for each related term.
+    """
+    model_file, base_term, rel_terms = args
+    model_label = os.path.splitext(model_file)[0]
+    model_path = os.path.join(MODELS_DIR, model_file)
+
+    # Load the model
+    model = Word2Vec.load(model_path)
+
+    scores = {}
+    for rel in rel_terms:
+        if base_term in model.wv.key_to_index and rel in model.wv.key_to_index:
+            score = model.wv.similarity(base_term, rel)
+            scores[rel] = score
+        else:
+            scores[rel] = -1.0
+            print(f"Term '{base_term}' or '{rel}' not found in model '{model_file}'.")
+
+    # Delete the model to free memory
+    del model
+
+    return model_label, scores
+
+def gen_nursing_trends(base_term: str, rel_terms: List[str]) -> Tuple[List[str], List[List[float]]]:
     """
     Generates trend data by calculating cosine similarity scores between a base term and multiple related terms
     across multiple Word2Vec models. Each model corresponds to a different time period, allowing trend analysis
@@ -34,29 +85,35 @@ def gen_nursing_trends(base_term, rel_terms):
       across all models (time periods).
 
     Notes:
-    - If a term is missing in any model, a maximum cosine distance of 1.0 is assigned by default for that model.
+    - If a term is missing in any model, a default similarity score of -1.0 is assigned for that model.
     """
     # Dynamically load model files from the models directory
-    model_files = sorted([f for f in os.listdir(MODELS_DIR) if f.endswith(".model")])
-    labels = [file.split('.')[0] for file in model_files]
-    
-    # Load Word2Vec models
-    models = [Word2Vec.load(os.path.join(MODELS_DIR, file)) for file in model_files]
+    model_files = [f for f in os.listdir(MODELS_DIR) if f.endswith(".model")]
 
-    # Get similarity scores
-    values = []
-    
-    for rel in rel_terms:
-        rel_scores = []
-        for model in models:
-            try:
-                score = distance.cosine(model.wv[base_term], model.wv[rel])
-                rel_scores.append(score)
-            except KeyError:
-                # If base_term or rel term not found in model, set max distance
-                rel_scores.append(1.0)
-                print(f"Term '{base_term}' or '{rel}' not found in model.")
-        values.append(rel_scores)
+    # Prepare arguments for multiprocessing
+    args = [(model_file, base_term, rel_terms) for model_file in model_files]
 
-    # Return labels and similarity values
+    # Determine the number of worker processes (adjust as needed)
+    num_workers = min(cpu_count(), len(model_files))
+
+    # Initialize the multiprocessing pool
+    with Pool(processes=num_workers) as pool:
+        # Map the processing function to the model files
+        results = pool.map(process_model, args)
+
+    # Sort results by labels to maintain consistent ordering
+    results.sort(key=lambda x: (int(x[0][3:]), MONTHS[x[0][:3].lower()]))
+
+    labels = []
+    # Initialize values: a list for each related term
+    values_dict = {rel: [] for rel in rel_terms}
+
+    for model_label, scores in results:
+        labels.append(model_label)
+        for rel in rel_terms:
+            values_dict[rel].append(scores[rel])
+
+    # Convert values_dict to a list of lists
+    values = [values_dict[rel] for rel in rel_terms]
+
     return labels, values

@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-<!-- html5up.net -->
 
 {% load widget_tweaks %}
 <html>
@@ -88,16 +87,16 @@
 				<!-- GRAPH LEGEND -->
 				<!-- GRAPH -->
 				<h3>Trend Visualizer</h3>
-				<div style="border: 2px solid black; border-radius: 10px; padding: 0rem 0rem 0rem 0rem; margin: 0rem 3rem 0.2rem 3rem;">
-					<!-- {{ context.graph | safe }} -->
+				<!-- <div style="border: 2px solid black; border-radius: 10px; padding: 0rem 0rem 0rem 0rem; margin: 0rem 3rem 0.2rem 3rem;">
+					{{ context.graph | safe }}
 					<br>
 					{{ context.graph.name | safe }}
 					{{ context.graph.base_term | safe }}
 					{{ context.graph.rel_terms | safe }}
-				</div>
+				</div> -->
 				
 				<!-- TODO : add Model Type, base term and relative terms to the graph legend -->
-				<div id="my_dataviz" style="border: 5px solid #eeeeee; padding: 10px; margin-left: 4%; margin-right: 4%; border-radius: 25px;"></div>
+				<div id="my_dataviz" style="border: 5px solid #eeeeee; padding: 10px; margin-left: 4%; margin-right: 4%; border-radius: 25px; margin-bottom: 20px;"></div>
 				
 				<!-- GRAPH FORM -->
 				<form id="graph-form" class="form" method="post" autocomplete="off">
@@ -273,7 +272,7 @@
 
 			<!-- Copyright -->
 			<div id="copyright">
-				<ul><li>&copy; MindLab, University of Maryland College Park</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+				<ul><li>&copy; MindLab, University of Maryland College Park</li><li>Project: <a href="https://github.com/angadsinghsandhu/trends-demo">GitHub</a></li></ul>
 			</div>
 		</div>
 

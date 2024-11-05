@@ -15,13 +15,27 @@ import nltk
 import os
 import json
 from gensim.models import Word2Vec
+from collections import Counter
 from home.helper.process import rem_stop_words
-from home.helper.transform import common_terms
+# from home.helper.transform import common_terms
 
 # Base directory for data and models
 BASE_DIR = "./home/helper/trends/nursing/"
 DATA_DIR = BASE_DIR + "data/"
 MODELS_DIR = BASE_DIR + "models/"
+
+def common_terms(terms, threshold=0.8):
+    # Flatten list of sets and count occurrences of each word
+    word_counts = Counter(word for term_set in terms for word in term_set)
+    
+    # Calculate required minimum count based on threshold
+    required_count = threshold * len(terms)
+    
+    # Filter words that meet the threshold
+    common_words = {word for word, count in word_counts.items() if count >= required_count}
+
+    # return
+    return list(common_words)
 
 def create_common_words():
     """

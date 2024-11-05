@@ -1,5 +1,6 @@
 import re
-import pandas as pd, math
+import pandas as pd
+import math
 from functools import reduce
 
 def convert(terms, values):
@@ -32,13 +33,13 @@ def update_csv(terms, values):
         df.to_csv('./home/static/csv/graph-data.csv', header=True, index=False)
 
         return "success"
-    except:
-        return "failure"
+    except Exception as e:
+        return f"failure, Error: {e}"
 
 def graph_dict(values, name, base, terms, labels):
     Xval = len(labels)+1
     max_val = max(map(max, values))
-    Yval = math.ceil(max_val*10)/10 + 0.2 
+    Yval = math.ceil(max_val*10)/10 + 0.1
 
     return {
         "rangeX": Xval,
@@ -70,17 +71,10 @@ def reverse_doc(strs, base, rel1, rel2):
         docs.append([doc, pos])
 
     # lamda function to sort according to positions
-    zero_floor = lambda x: 0 if x > 0 else x
-    sort_key = lambda x: (zero_floor(x[1][0]), zero_floor(x[1][1]), zero_floor(x[1][2]))
+    def zero_floor(x): return 0 if x > 0 else x
+    def sort_key(x): return (zero_floor(x[1][0]), zero_floor(x[1][1]), zero_floor(x[1][2]))
     
     docs.sort(key=sort_key, reverse=True)
-
-#     return docs
-
-# def reverse_doc(strs, base, rel1, rel2):
-#     docs = sort_doc(strs, base, rel1, rel2)
-
-#     print(docs)
 
     rev = {
         "base": base,

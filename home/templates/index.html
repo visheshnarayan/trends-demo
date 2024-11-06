@@ -142,67 +142,67 @@
 				<article class="post featured">
 					<h3>Reverse Search Terms in Documents</h3>
 
-					<h3>Trend Visualizer</h3>
-					<div style="border: 2px solid black; border-radius: 10px; padding: 0rem 0rem 0rem 0rem; margin: 0rem 3rem 0.2rem 3rem;">
-						<!-- {{ context.graph | safe }} -->
-						<br>
-						{{ context.graph.name | safe }}
-						{{ context.graph.base_term | safe }}
-						{{ context.graph.rel_terms | safe }}
+				<!-- <h3>Trend Visualizer</h3>
+				<div style="border: 2px solid black; border-radius: 10px; padding: 0rem 0rem 0rem 0rem; margin: 0rem 3rem 0.2rem 3rem;">
+					{{ context.graph | safe }}
+					<br>
+					{{ context.graph.name | safe }}
+					{{ context.graph.base_term | safe }}
+					{{ context.graph.rel_terms | safe }}
+				</div> -->
+
+
+				<!-- <article> -->
+				<!-- TODO : show Model Type, Base Term to the carousel -->
+				<div class="slider">
+					<div class="carousel" data-carousel>
+						<section aria-label="Reverse Queried Documents">
+							<ul data-slides class="slides" id="slides">
+								<li class="slide">
+									<div class="content" id="slideContent"></div>
+								</li>
+							</ul>
+						</section>
+						<button id="prevButton" class="carousel-button prev" data-carousel-button="prev">&#8249;</button>
+						<button id="nextButton" class="carousel-button next" data-carousel-button="next">&#8250;</button>
+					</div>
+				</div>
+
+				<!-- REVERSE FORM -->
+				<form id="reverse-form" class="form" method="post" autocomplete="off">
+					{% csrf_token %}
+
+					<div class="column">
+						<div class="item">
+							{{ context.trendForm.model_type.label_tag }}
+							{{ context.trendForm.model_type }}
+						</div>
+						<div class="item">
+							{{ context.trendForm.base_term.label_tag }}
+							{{ context.trendForm.base_term }}
+						</div>
 					</div>
 
-
-					<!-- <article> -->
-					<!-- TODO : show Model Type, Base Term to the carousel -->
-					<div class="slider">
-						<div class="carousel" data-carousel>
-							<section aria-label="Reverse Queried Documents">
-								<ul data-slides class="slides" id="slides">
-									<li class="slide">
-										<div class="content" id="slideContent"></div>
-									</li>
-								</ul>
-							</section>
-							<button id="prevButton" class="carousel-button prev" data-carousel-button="prev">&#8249;</button>
-							<button id="nextButton" class="carousel-button next" data-carousel-button="next">&#8250;</button>
+					<div class="column">
+						<div class="item">
+							{{ context.trendForm.rel_term1.label_tag }}
+							{{ context.trendForm.rel_term1 }}
+						</div>
+						<div class="item">
+							{{ context.trendForm.rel_term2.label_tag }}
+							{{ context.trendForm.rel_term2 }}
 						</div>
 					</div>
+					
+					<br></br> 
+					<input id="revFormFill" type="button" value="Fill Most Similar Terms">
 
-					<!-- REVERSE FORM -->
-					<form id="reverse-form" class="form" method="post" autocomplete="off">
-						{% csrf_token %}
+					<!-- FORM SUBMIT BUTTON -->
+					<input id="revFormSubmit" type="submit" value="Search">
+				</form>
 
-						<div class="column">
-							<div class="item">
-								{{ context.trendForm.model_type.label_tag }}
-								{{ context.trendForm.model_type }}
-							</div>
-							<div class="item">
-								{{ context.trendForm.base_term.label_tag }}
-								{{ context.trendForm.base_term }}
-							</div>
-						</div>
-
-						<div class="column">
-							<div class="item">
-								{{ context.trendForm.rel_term1.label_tag }}
-								{{ context.trendForm.rel_term1 }}
-							</div>
-							<div class="item">
-								{{ context.trendForm.rel_term2.label_tag }}
-								{{ context.trendForm.rel_term2 }}
-							</div>
-						</div>
-						
-						<br></br> 
-						<input id="revFormFill" type="button" value="Fill Most Similar Terms">
-
-						<!-- FORM SUBMIT BUTTON -->
-						<input id="revFormSubmit" type="submit" value="Search">
-					</form>
-
-					<!-- context | safe is the data itself -->
-					<!-- {{ context | safe }} -->
+				<!-- context | safe is the data itself -->
+				<!-- {{ context | safe }} -->
 				</article>
 
 				<article class="post featured">

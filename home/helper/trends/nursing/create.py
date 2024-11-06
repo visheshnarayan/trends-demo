@@ -98,5 +98,5 @@ def create_word2vec_models():
             print(f"Model saved for {label} at {MODELS_DIR}{label}.model")
 
     # Generate and save common words data
-    create_common_words(labels)
+    create_common_words()
 

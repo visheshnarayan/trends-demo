@@ -102,14 +102,14 @@ def gen_nursing_trends(base_term: str, rel_terms: List[str]) -> Tuple[List[str],
         results = pool.map(process_model, args)
 
     # Sort results by labels to maintain consistent ordering
-    results.sort(key=lambda x: (int(x[0][3:]), MONTHS[x[0][:3].lower()]))
+    results.sort(key=lambda x: (int(x[0][:2]), MONTHS[x[0][2:5].lower()]))
 
     labels = []
     # Initialize values: a list for each related term
     values_dict = {rel: [] for rel in rel_terms}
 
     for model_label, scores in results:
-        labels.append(model_label)
+        labels.append(f"{model_label[2:5]}{model_label[:2]}-{model_label[8:11]}{model_label[6:8]}")
         for rel in rel_terms:
             values_dict[rel].append(scores[rel])
 

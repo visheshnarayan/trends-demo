@@ -1,11 +1,14 @@
-version: '3'
+version: '3.8'
 
 services:
-  web:
-    build: .
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver"
-    container_name: trends-demo
-    volumes:
-      - .:/trends-demo
+  trends-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - .:/trends-demo
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]

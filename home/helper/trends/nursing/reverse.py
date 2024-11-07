@@ -14,7 +14,7 @@ import pandas as pd
 import re
 
 BASE_DIR = "home/helper/trends/nursing/"
-DATA_PATH = BASE_DIR + "data/legacy/01_24_modified_data_clip.csv"
+DATA_PATH = BASE_DIR + "data/full.csv"
 
 def reverse_nursing(base, r1, r2):
     '''

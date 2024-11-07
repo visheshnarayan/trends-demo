@@ -1,0 +1,6 @@
+# enviornment variables
+.env
+.venv
+.ruff_cache
+.vscode
+.DS_Store

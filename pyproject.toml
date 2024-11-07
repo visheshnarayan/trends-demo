@@ -1,7 +1,7 @@
 [project]
 name = "trends-demo"
 version = "0.1.0"
-description = "Add your description here"
+description = "This is a Django project that aims to create a web application that can predict the future trends of a given topic."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

@@ -2,7 +2,7 @@
 
 ## DESCRIPTION
 
-This project is a demonstration of creating semantic trends embeddings from Word2Vec models. The project is divided into two main sections: healthcare and New York Times (NYT) articles. The healthcare section is further divided into two subsections: nursing and healthcare. The project is structured in a way that the user can easily add new sections and subsections. The project is designed to be scalable and flexible. The project is built using Python, Flask, and SQLite.
+This project is a demonstration of creating semantic trends embeddings from Word2Vec models. The project is divided into two main sections: healthcare and New York Times (NYT) articles. The healthcare section is further divided into two subsections: nursing and healthcare. The project is structured in a way that the user can easily add new sections and subsections. The project is designed to be scalable and flexible.
 
 ## QuckStart
 
@@ -60,6 +60,12 @@ Rebuild Docker image using the updated Dockerfile and run the container using th
 docker build --no-cache -t trends-demo .
 # docker-compose up --build
 docker run -p 8000:8000 trends-demo
+```
+
+run docker shell
+
+```bash
+docker exec -it <container_id> /bin/bash
 ```
 
 ## Important Links

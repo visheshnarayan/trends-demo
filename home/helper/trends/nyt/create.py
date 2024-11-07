@@ -46,12 +46,12 @@ def create_nyt():
     dec21 = pd.read_csv(BASE_DIR + "data/dec2.csv", encoding = "utf-8", engine='python')
 
     # select data
-    jan20 = jan20['Headlines'].map(str)
-    aug20 = aug20['Headlines'].map(str)
-    dec20 = dec20['Headlines'].map(str)
-    jan21 = jan21['Headlines'].map(str)
-    aug21 = aug21['Headlines'].map(str)
-    dec21 = dec21['Headlines'].map(str)
+    jan20 = jan20['text'].map(str)
+    aug20 = aug20['text'].map(str)
+    dec20 = dec20['text'].map(str)
+    jan21 = jan21['text'].map(str)
+    aug21 = aug21['text'].map(str)
+    dec21 = dec21['text'].map(str)
 
     # list for clean data
     cleaned_jan20 = []

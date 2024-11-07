@@ -165,20 +165,28 @@ def reverse(req):
         form = forms.ReverseForm(req.POST)
 
         if form.is_valid():
-            terms = [str(v) for k, v in form.cleaned_data.items() if k.startswith('rel')]
-
             # received data
             name = form.cleaned_data["model_type"]
             base_term = form.cleaned_data["base_term"]
-            rel_terms = terms
+            rel_terms = [str(v) for k, v in form.cleaned_data.items() if k.startswith('rel')]
+
+            print("===> Reverse Query:")
+            print(name, base_term, rel_terms)
+
 
             # Reverse query based on selected model
             if name == 'nyt':
+                # nyt race ['state', 'government']
                 rev_data = reverse_nyt(base_term, rel_terms[0], rel_terms[1])
+                ## rev_data = ["doc1", "doc2", "doc3"]
             elif name == 'healthcare':
+                # healthcare healthcare ['medicine', 'cost']
                 rev_data = reverse_healthcare(base_term, rel_terms[0], rel_terms[1])
             elif name == 'nursing':
+                # nursing patient ['doctor', 'family']
                 rev_data = reverse_nursing(base_term, rel_terms[0], rel_terms[1])
+
+            print(rev_data)
 
             return JsonResponse({
                 "status": "success",

@@ -13,7 +13,7 @@ labels = ["2016", "2017", "2018", "2019"]
 
 def add_year():
     df = pd.read_csv(BASE_DIR + "data/health_data_full.csv")
-    make_year = lambda row: str(row["inspection_date"][-4:])
+    make_year = lambda row: str(row["date"][-4:])
 
     df["year"] = df.apply(make_year, axis=1)
 
@@ -60,7 +60,7 @@ def create_healthcare():
     # getting all the text data
     datasets = []
     for df in dfs:
-        datasets.append(df["inspection_text"].map(str))
+        datasets.append(df["text"].map(str))
 
     # clean data
     cleaned_datasets = []

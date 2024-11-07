@@ -23,7 +23,10 @@ def gen_nyt_trends(base_term, rel_terms):
         vals = []
         for i, model in enumerate(models):
             try:
-                vals.append(1-distance.cosine(model.wv[base_term], model.wv[rel]))
+                # vals.append(1-distance.cosine(model.wv[base_term], model.wv[rel]))
+                cos_dist = distance.cosine(model.wv[base_term], model.wv[rel])
+                norm_sim = 1 - (cos_dist / 2)
+                vals.append(norm_sim)
             except Exception as e:
                 vals.append(-1.0)
                 print(f"Term '{base_term}' or '{rel}' not found in model. Error: {e}")

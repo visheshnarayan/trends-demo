@@ -36,9 +36,22 @@ function visualize() {
             };
         });
 
+        // Filter out groups where all values are negative
+        var invalidGroups = [];
+        dataReady = dataReady.filter(function(group) {
+            var hasValidValue = group.values.some(function(d) { return d.value >= 0; });
+            if (!hasValidValue) {
+                invalidGroups.push(group.name);
+            }
+            return hasValidValue;
+        });
+
+        // Update the group names to only include valid groups
+        var validGroups = dataReady.map(function(d) { return d.name; });
+
         // Color scale
         var myColor = d3.scaleOrdinal()
-            .domain(allGroup)
+            .domain(validGroups)
             .range(d3.schemeSet2);
 
         // Define scales and axes
@@ -65,29 +78,7 @@ function visualize() {
             .attr("dy", "0.15em")
             .attr("transform", "rotate(-65)");
 
-        // // Add x-axis label if needed
-        // xAxis.append("text")
-        //     .attr("y", -10)
-        //     .attr("x", width)
-        //     .attr("text-anchor", "end")
-        //     .attr("stroke", "black")
-        //     .text("Year");
-
         // Append y-axis
-        svg.append("g")
-            .call(d3.axisLeft(y));
-
-        // // Append axes
-        // svg.append("g")
-        //     .attr("transform", "translate(0," + height + ")")
-        //     .call(d3.axisBottom(xScale))
-        //     .append("text")
-        //     .attr("y", height - 250)
-        //     .attr("x", width - 100)
-        //     .attr("text-anchor", "end")
-        //     .attr("stroke", "black")
-        //     .text("Year");
-
         svg.append("g")
             .call(d3.axisLeft(y));
 
@@ -172,6 +163,17 @@ function visualize() {
                 // Toggle opacity between 0 and 1
                 d3.selectAll("." + d.name).transition().style("opacity", currentOpacity == 1 ? 0 : 1);
             });
+
+        // Display a message if there are terms with no data
+        if (invalidGroups.length > 0) {
+            svg.append("text")
+                .attr("x", margin.left)             
+                .attr("y", 50)
+                .attr("text-anchor", "start")  
+                .style("font-size", "12px") 
+                .style("fill", "red")
+                .text("No data for terms: " + invalidGroups.join(", "));
+        }
     });
 
     console.log("graph visualize end!!!");

@@ -84,8 +84,8 @@ def create_word2vec_models():
             # Read the CSV file
             df = pd.read_csv(os.path.join(DATA_DIR, file_name), encoding="utf-8")
 
-            # Select and preprocess the 'inspection_text' column
-            cleaned_text = [rem_stop_words(text) for text in df['inspection_text'].astype(str)]
+            # Select and preprocess the 'text' column
+            cleaned_text = [rem_stop_words(text) for text in df['text'].astype(str)]
 
             # Tokenize each text entry
             tokenized_text = [nltk.word_tokenize(text) for text in cleaned_text]

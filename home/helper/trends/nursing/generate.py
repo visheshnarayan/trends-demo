@@ -22,6 +22,7 @@ import os
 from typing import List, Tuple, Dict
 from gensim.models import Word2Vec
 from multiprocessing import Pool, cpu_count
+from scipy.spatial import distance
 
 BASE_DIR = "./home/helper/trends/nursing/"
 MODELS_DIR = os.path.join(BASE_DIR, "models/")
@@ -56,12 +57,16 @@ def process_model(args) -> Tuple[str, Dict[str, float]]:
 
     scores = {}
     for rel in rel_terms:
-        if base_term in model.wv.key_to_index and rel in model.wv.key_to_index:
-            score = model.wv.similarity(base_term, rel)
-            scores[rel] = score
-        else:
+        # looping through all models
+        vals = []
+        try:
+            # vals.append(1-distance.cosine(model.wv[base_term], model.wv[rel]))
+            cos_dist = distance.cosine(model.wv[base_term], model.wv[rel])
+            norm_sim = 1 - (cos_dist / 2)
+            scores[rel] = norm_sim
+        except Exception as e:
             scores[rel] = -1.0
-            print(f"Term '{base_term}' or '{rel}' not found in model '{model_file}'.")
+            print(f"Term '{base_term}' or '{rel}' not found in model. Error: {e}")
 
     # Delete the model to free memory
     del model

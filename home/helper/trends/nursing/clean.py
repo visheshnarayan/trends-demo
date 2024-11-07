@@ -5,11 +5,18 @@ This script contains functions to clean and preprocess the nursing home inspecti
 """
 
 # sample useage
-# python clean.py data/legacy/01_24_modified_data_clip.csv -o data
+# python clean.py data/full.csv -o data
 
 import pandas as pd
 import os
 import argparse
+# from datetime import datetime
+import spacy
+import re
+# from home.helper.process import rem_stop_words
+
+# Load spaCy's English language model
+nlp = spacy.load('en_core_web_sm')
 
 def get_args():
     # Set up argument parser
@@ -22,16 +29,81 @@ def get_args():
 
     return parser.parse_args()
 
-def clean(df: pd.DataFrame) -> pd.DataFrame:
-    df["inspection_text"] = df["inspection_text"].apply(lambda s: s.replace("NOTE- TERMS IN BRACKETS HAVE BEEN EDITED TO PROTECT CONFIDENTIALITY", ""))
-    df["inspection_text"] = df["inspection_text"].apply(lambda s: s.replace("**** ", ""))
-    df["inspection_text"] = df["inspection_text"].str.replace(r'^\d{5}', '', regex=True)
-    df["inspection_text"] = df["inspection_text"].apply(lambda s: s.replace("<BR/>", ""))
-    return df
+# Load spaCy's English language model
+nlp = spacy.load('en_core_web_sm')
+
+# def clean(df: pd.DataFrame) -> pd.DataFrame:
+#     df["text"] = df["text"].apply(lambda s: s.replace("NOTE- TERMS IN BRACKETS HAVE BEEN EDITED TO PROTECT CONFIDENTIALITY", ""))
+#     df["text"] = df["text"].apply(lambda s: s.replace("**** ", ""))
+#     df["text"] = df["text"].str.replace(r'^\d{5}', '', regex=True)
+#     df["text"] = df["text"].apply(lambda s: s.replace("<BR/>", ""))
+#     return df
+
+# Define the text processing function
+def process_text(text):
+    print("..2.5")
+    if pd.isnull(text):
+        return ""
+    # Remove specific unwanted phrases
+    text = text.replace("**NOTE- TERMS IN BRACKETS HAVE BEEN EDITED TO PROTECT CONFIDENTIALITY**", "")
+    text = text.replace("NOTE- TERMS IN BRACKETS HAVE BEEN EDITED TO PROTECT CONFIDENTIALITY", "")
+    text = text.replace("**** ", "")
+    text = text.replace("<BR/>", " ")
+    text = text.replace("<BR>", " ")
+    text = text.replace("<br/>", " ")
+    text = text.replace("<br>", " ")
+    text = text.replace(">", " ")
+    text = text.replace("<", " ")
+    text = re.sub(r'^\d{5}', '', text)  # Remove leading 5-digit numbers
+
+    # Remove HTML tags and excess whitespace
+    text = re.sub(r'<[^>]+>', '', text)
+    text = re.sub(r'\s+', ' ', text)
+
+    # Remove non-alphanumeric characters except spaces
+    text = re.sub(r'[^A-Za-z0-9\s]', '', text)
+
+    # Lowercase the text
+    text = text.lower()
+
+    # Tokenize, remove stopwords, and lemmatize
+    doc = nlp(text)
+    tokens = [token.lemma_ for token in doc if token.is_alpha and not token.is_stop]
+
+    # Join tokens back into a single string
+    clean_text = ' '.join(tokens)
+    return clean_text
+
+
+def clean(DATA_DIR) -> pd.DataFrame:
+    '''
+    Cleans and preprocesses the nursing home inspection data by removing excess formatting,
+    retaining only readable text, removing stopwords, and performing lemmatization.
+
+    Parameters:
+    - df (pd.DataFrame): The input DataFrame containing at least a 'text' column.
+
+    Returns:
+    - pd.DataFrame: The cleaned DataFrame with the 'text' column processed.
+    '''
+    labels = []
+    for file_name in os.listdir(DATA_DIR):
+        if file_name.endswith(".csv") and file_name != "full.csv":
+            label = file_name.split('.')[0]
+            labels.append(label)
+
+            # Read the CSV file
+            df = pd.read_csv(os.path.join(DATA_DIR, file_name), encoding="utf-8")
+    
+            # Apply the text processing function to the 'text' column
+            df['text'] = df['text'].apply(process_text)
+
+            # Save the cleaned data to a new CSV file
+            df.to_csv(os.path.join(DATA_DIR, f"{label}_cleaned.csv"), index=False)
 
 def split_csv_by_month_year(input_file, output_folder="data"):
     """
-    Splits a large CSV file by month and year in the 'inspection_date' column, saving
+    Splits a large CSV file by month and year in the 'date' column, saving
     each subset as a separate CSV file in the format 'monYY.csv' (e.g., 'jan23.csv').
 
     Parameters:
@@ -44,19 +116,22 @@ def split_csv_by_month_year(input_file, output_folder="data"):
     # Read the CSV into a DataFrame
     df = pd.read_csv(input_file)
 
-    # Convert 'inspection_date' to datetime format for easy grouping by month and year
-    df['inspection_date'] = pd.to_datetime(df['inspection_date'], format='%m/%d/%Y')
+    # Convert 'date' to datetime format for easy grouping by month and year
+    df['date'] = pd.to_datetime(df['date'], format='%m/%d/%Y')
 
-    # clean data
-    df = clean(df)
+    # # clean data
+    # df = clean(df)
 
     # Group by year and month, then save each group as a separate CSV
-    for (year, month), group in df.groupby([df['inspection_date'].dt.year, df['inspection_date'].dt.month]):
+    for (year, month), group in df.groupby([df['date'].dt.year, df['date'].dt.month]):
         # Generate the file name in the required format, e.g., "jan23.csv", "feb23.csv", etc.
         file_name = f"{output_folder}/{pd.to_datetime(f'{year}-{month}-01').strftime('%b').lower()}{str(year)[-2:]}.csv"
         
         # Save the group to a CSV file
-        group.to_csv(file_name, index=False)
+        # group.to_csv(file_name, index=False)
+        # only save "text" and "date" columns
+        group[["date", "text"]].to_csv(file_name, index=False)
+
         print(f"Saved {file_name}")
 
 def split_csv_by_time(input_file, output_folder="data", num_files=12):
@@ -77,27 +152,36 @@ def split_csv_by_time(input_file, output_folder="data", num_files=12):
 
     # Read the CSV into a DataFrame
     df = pd.read_csv(input_file)
+    print("..1")
 
-    # Convert 'inspection_date' to datetime format for sorting
-    df['inspection_date'] = pd.to_datetime(df['inspection_date'], format='%m/%d/%Y')
+    # Convert 'date' to datetime format for sorting, coercing errors to NaT
+    df['date'] = pd.to_datetime(df['date'], format='%m/%d/%Y', errors='coerce')
 
-    # Sort by 'inspection_date'
-    df = df.sort_values('inspection_date').reset_index(drop=True)
+    # Drop rows where 'date' conversion failed (NaT values)
+    num_nat = df['date'].isna().sum()
+    print(f"Number of NaT in 'date' column after conversion: {num_nat}")
+    if num_nat > 0:
+        df = df.dropna(subset=['date'])
+        print(f"Dropped {num_nat} rows with invalid dates.")
 
-    # Clean data
-    df = clean(df)
+    # Proceed with sorting and splitting
+    df = df.sort_values('date').reset_index(drop=True)
+    print("..2")
 
     # Calculate word counts
-    df['word_count'] = df['inspection_text'].str.split().str.len()
+    df['word_count'] = df['text'].str.split().str.len()
+    print("..2.75")
 
     # Calculate cumulative sum of word counts
     df['cum_word_count'] = df['word_count'].cumsum()
+    print("..3")
 
     # Calculate total words
     total_words = df['word_count'].sum()
 
     # Calculate words per file
     words_per_file = total_words // num_files
+    print("..4")
 
     # Initialize breakpoints
     break_points = [0]
@@ -108,6 +192,7 @@ def split_csv_by_time(input_file, output_folder="data", num_files=12):
         break_points.append(idx)
     # Ensure the last breakpoint is the end of the DataFrame
     break_points.append(len(df))
+    print("..5")
 
     # Split the DataFrame and save each part
     for i in range(len(break_points) - 1):
@@ -116,8 +201,8 @@ def split_csv_by_time(input_file, output_folder="data", num_files=12):
         df_chunk = df.iloc[start_idx:end_idx]
 
         # Get start and end dates
-        start_date = df_chunk['inspection_date'].iloc[0]
-        end_date = df_chunk['inspection_date'].iloc[-1]
+        start_date = df_chunk['date'].iloc[0]
+        end_date = df_chunk['date'].iloc[-1]
 
         # Format file name
         start_month = start_date.strftime('%b').lower()
@@ -130,7 +215,8 @@ def split_csv_by_time(input_file, output_folder="data", num_files=12):
         # Save the chunk to CSV
         df_chunk.drop(columns=['word_count', 'cum_word_count']).to_csv(file_name, index=False)
         print(f"Saved {file_name} with {df_chunk['word_count'].sum()} words")
-    
+
+
 if __name__ == "__main__":
     # Parse arguments
     args = get_args()

@@ -35,6 +35,8 @@ This project is a demonstration of creating semantic trends embeddings from Word
 
    ```link
    http://127.0.0.1:8000/
+   or
+   http://0.0.0.0:8000/
    ```
 
 ## INFO
@@ -48,6 +50,16 @@ update the application by making migrations using the following command:
 ```bash
 python manage.py makemigrations
 python manage.py migrate
+```
+
+## DOCKER commands
+
+Rebuild Docker image using the updated Dockerfile and run the container using the following commands:
+
+```bash
+docker build --no-cache -t trends-demo .
+# docker-compose up --build
+docker run -p 8000:8000 trends-demo
 ```
 
 ## Important Links

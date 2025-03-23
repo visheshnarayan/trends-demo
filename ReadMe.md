@@ -39,10 +39,6 @@ This project is a demonstration of creating semantic trends embeddings from Word
    http://0.0.0.0:8000/
    ```
 
-## INFO
-
-[TODO]
-
 ## DJANGO
 
 update the application by making migrations using the following command:
@@ -79,8 +75,8 @@ docker exec -it <container_id> /bin/bash
 - Our GitHub Links:
   - [GitHub: Angad](https://github.com/angadsinghsandhu)
   - [GitHub: Vishesh](https://github.com/visheshnarayan)
-- My Medium Blogs: [Medium: Angad](https://angadsandhu.medium.com/)
-- My Twitter Profiles: [Twitter: Angad](https://x.com/angadsandhuwork)
+- Angad Medium Blogs: [Medium: Angad](https://angadsandhu.medium.com/)
+- Angad Twitter Profiles: [Twitter: Angad](https://x.com/angadsandhuwork)
 - Professor Agrawala's Website: [LINK](https://www.cs.umd.edu/people/agrawala)
 
 ## DIRECTORY STRUCTURE
